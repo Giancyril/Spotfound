@@ -70,6 +70,18 @@ const parseGvizResponse = (data: string) => {
   }
 };
 
+const getSecureMasterlistUrl = () => {
+  if (process.env.GOOGLE_SHEETS_MASTERLIST_URL) {
+    return process.env.GOOGLE_SHEETS_MASTERLIST_URL;
+  }
+  if (process.env.GOOGLE_SHEETS_WEBHOOK_URL) {
+    const separator = process.env.GOOGLE_SHEETS_WEBHOOK_URL.includes("?") ? "&" : "?";
+    const key = process.env.GOOGLE_SHEETS_ACCESS_KEY || "nbsc_masterlist_secret_key_2026";
+    return `${process.env.GOOGLE_SHEETS_WEBHOOK_URL}${separator}action=masterlist&key=${encodeURIComponent(key)}`;
+  }
+  return null;
+};
+
 // ── Masterlist fetcher (cache-first) ─────────────────────────────────────────
 
 /**
@@ -77,10 +89,8 @@ const parseGvizResponse = (data: string) => {
  *
  * Priority:
  *   1. Redis cache  → sub-5 ms, works during Sheets outages
- *   2. Gviz (live)  → fallback on cache miss or Redis unavailability
- *
- * All existing Gviz logic (axios, User-Agent header, 10s timeout,
- * parseGvizResponse error handling) is preserved unchanged.
+ *   2. Authenticated Google Apps Script Webhook (for private/restricted Sheets)
+ *   3. Gviz (live public fallback if webhook not configured)
  */
 const fetchMasterlist = async () => {
   // ── 1. Try Redis cache ──────────────────────────────────────────────────────
@@ -90,15 +100,38 @@ const fetchMasterlist = async () => {
       console.log(`[Masterlist] Cache hit – ${cached.length} students`);
       return cached;
     }
-    console.log("[Masterlist] Cache miss – falling back to Gviz");
+    console.log("[Masterlist] Cache miss – falling back to remote source");
   } catch (cacheErr) {
-    // Redis is down / unreachable — degrade gracefully to Gviz
-    console.warn("[Masterlist] Redis unavailable, falling back to Gviz:", cacheErr);
+    // Redis is down / unreachable — degrade gracefully
+    console.warn("[Masterlist] Redis unavailable, falling back to remote:", cacheErr);
   }
 
-  // ── 2. Fallback: Gviz (Google Sheets) ───────────────────────────────────────
+  // ── 2. Authenticated Private Sheet Webhook ───────────────────────────────────
+  const secureUrl = getSecureMasterlistUrl();
+  if (secureUrl) {
+    try {
+      console.log("[Masterlist] Fetching securely via authenticated webhook proxy…");
+      const res = await axios.get(secureUrl, { timeout: 10000 });
+      if (res.data?.success && Array.isArray(res.data?.data)) {
+        console.log(`[Masterlist] Successfully fetched ${res.data.data.length} students via authenticated webhook`);
+        return res.data.data.map((s: any) => ({
+          id: String(s.id || "").trim(),
+          email: String(s.email || "").trim(),
+          name: String(s.name || "").trim(),
+          course: String(s.course || s.department || "").trim(),
+          department: String(s.department || s.course || "").trim(),
+          yearLevel: String(s.yearLevel || "").trim(),
+        }));
+      }
+      console.warn("[Masterlist] Authenticated webhook returned non-success response, falling back to Gviz:", res.data?.error);
+    } catch (webhookErr: any) {
+      console.warn("[Masterlist] Authenticated webhook failed, falling back to Gviz:", webhookErr.message);
+    }
+  }
+
+  // ── 3. Fallback: Gviz (requires public sheet) ──────────────────────────────
   try {
-    console.log("[Masterlist] Fetching from:", GVIZ_URL);
+    console.log("[Masterlist] Fetching from Gviz endpoint:", GVIZ_URL);
     const response = await axios.get(GVIZ_URL, {
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
@@ -110,7 +143,7 @@ const fetchMasterlist = async () => {
       console.error("[Masterlist] Google Sheets HTTP Error:", response.status, response.statusText);
       throw new AppError(
         StatusCodes.SERVICE_UNAVAILABLE,
-        `Google Sheets error (${response.status}). Check if the sheet is public.`
+        `Google Sheets error (${response.status}). Check if the sheet is shared or webhook is configured.`
       );
     }
 

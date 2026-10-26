@@ -13,38 +13,43 @@ app.use(helmet());
 app.disable("x-powered-by");
 app.set("trust proxy", 1);
 
-const ALLOWED_ORIGINS = [
+const isProduction = process.env.NODE_ENV === "production";
+
+// Parse allowed origins from environment variable (comma-separated), falling back to production URL
+const configuredOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(",").map(o => o.trim()).filter(Boolean)
+  : [];
+
+const defaultOrigins = [
   "https://lost-and-found-liart-seven.vercel.app",
 ];
 
-if (process.env.NODE_ENV !== "production") {
-  ALLOWED_ORIGINS.push("http://localhost:5173", "http://127.0.0.1:5173");
-}
+// Production origins must never include development or loopback domains
+const productionOrigins = Array.from(new Set([...defaultOrigins, ...configuredOrigins]))
+  .filter(origin => !origin.includes("localhost") && !origin.includes("127.0.0.1"));
 
-// ✅ SECURITY: CORS Configuration Check
-// WARNING: Remove localhost origins before deploying to production
-if (process.env.NODE_ENV === "production") {
-  const devOrigins = ALLOWED_ORIGINS.filter(origin => origin.includes("localhost") || origin.includes("127.0.0.1"));
-  if (devOrigins.length > 0) {
-    console.error("⚠️  SECURITY WARNING: Development origins detected in production CORS policy:");
-    console.error(devOrigins);
-    console.error("Remove these origins from ALLOWED_ORIGINS before deploying!");
-  }
-}
+const developmentOrigins = [
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  "http://localhost:3000",
+];
 
-const corsOptions = {
+const ALLOWED_ORIGINS = isProduction
+  ? productionOrigins
+  : Array.from(new Set([...productionOrigins, ...developmentOrigins]));
+
+const corsOptions: cors.CorsOptions = {
   origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
-    // Allow requests with no origin (e.g. curl, server-to-server, or mobile apps)
+    // Allow requests with no origin (e.g. mobile apps, server-to-server, curl)
     if (!origin) return callback(null, true);
 
-    // Allow exact-match origins
-    if (ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
+    // Exact-match against strict whitelist
+    if (ALLOWED_ORIGINS.includes(origin)) {
+      return callback(null, true);
+    }
 
-    // Dynamically allow any *.github.io subdomain (for SAS Portal embedded iframe)
-    if (origin.endsWith(".github.io")) return callback(null, true);
-
-    // Reject everything else
-    callback(new Error(`CORS policy: origin '${origin}' is not allowed`));
+    // Explicitly reject untrusted origins
+    return callback(null, false);
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
@@ -65,8 +70,6 @@ app.options("*", cors(corsOptions));
 import cookieParser from "cookie-parser";
 import { doubleCsrf } from "csrf-csrf";
 import config from "./app/config/config";
-
-const isProduction = process.env.NODE_ENV === "production";
 
 const { doubleCsrfProtection, generateCsrfToken } = doubleCsrf({
   getSecret: () => config.jwt_secrets as string || "default_csrf_secret",

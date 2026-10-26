@@ -29,7 +29,7 @@ A production-grade, AI-augmented Lost & Found platform designed for academic ins
 - **Audit Logging**: Comprehensive audit trail for all administrative actions
 - **Sheets Activity Logger**: Every lost and found report submission is logged to a Google Sheet in real time for offline recordkeeping and audit trails
 - **Google Sheets Reconciliation**: Automated weekly integrity checker that compares database records with Google Sheets logs to detect silent logging failures caused by network errors or offline submissions. Runs every Sunday at 11:00 PM, sends email alerts to administrators when discrepancies are found, and provides one-click re-sync functionality to automatically fix missing entries. Ensures complete audit trail for compliance.
-- **Redis Masterlist Cache**: High-performance local caching layer for student ID resolution that eliminates Google Sheets Gviz API as a single point of failure. Student ID lookups hit Redis first (< 5ms response) with automatic fallback to Google Sheets on cache miss. Background sync job refreshes cache every 6 hours. Scanner remains operational during Google Sheets outages, rate-limiting events, or network failures. Provides 40-100x faster lookups compared to direct Gviz API calls.
+- **Redis Masterlist Cache**: High-performance local caching layer for student ID resolution that eliminates Google Sheets as a single point of failure. Student ID lookups hit Redis first (< 5ms response) with automatic fallback to Google Sheets on cache miss. Background sync job refreshes cache every 6 hours. Scanner remains operational during Google Sheets outages, rate-limiting events, or network failures, avoiding remote HTTP network latency on cache hits.
 - **Optimistic UI Updates**: Instant feedback system for all major admin dashboard actions that updates the UI immediately before server confirmation, making the interface feel 2-3x faster. Implements 12 optimistic mutations including archive/restore items, update claim status, delete operations, user management, bulletin actions, comments, and spotlights. Features automatic rollback on server errors, with admin actions responding in <16ms instead of 200-500ms (15-30x faster perceived performance). Creates native-app-like responsiveness with zero breaking changes.
 - **Image Handling**:
   - **Image Compression**: Uploaded images are automatically compressed client-side before submission to reduce bandwidth and storage usage
@@ -46,7 +46,7 @@ A production-grade, AI-augmented Lost & Found platform designed for academic ins
 - **Live Telemetry & Activity Stats Board**: Live campus lost-and-found status counter displaying real-time aggregates of total reported lost, recovered found, and successfully claimed items synced directly with server database mutations.
 - **Double Live Feed Recent Panels**: Real-time recent Lost and Found item displays containing active status badge trackers (`✓ Found`, `Claimed`, `Available`, `Pending`), scrollable custom layouts, and fast direct routing.
 - **Offline Sync**: Staff members can scan barcodes or submit "Found Items" while offline. The app saves the data securely in the browser and automatically uploads it in the background as soon as they walk back into a WiFi zone.
-- **Strict Audit Trail**: A dedicated, un-deletable "Audit Log" page for Administrators that shows exactly who performed which action and when. This ensures complete accountability and makes the system virtually bulletproof for school audits.
+- **Strict Audit Trail**: A dedicated, un-deletable "Audit Log" page for Administrators that shows exactly who performed which action and when. This ensures complete accountability and provides tamper-evident audit records for institutional reviews.
 - **AI Chatbot Concierge ("Smart Assistant")**: A floating AI chat widget integrated into the Student Dashboard. Built with native **Gemini Function Calling**, **Semantic Search (Vector Embeddings)** for high-accuracy concept matching (e.g. searching "knapsack" matches "backpack"), **Structured JSON Responses**, beautiful horizontal **UI product cards** with click-to-claim routing, and advanced **Few-Shot Injections** for consistent, empathetic, and platform-compliant conversations.
 - **Student Report Status Timeline**: Visual step-by-step progress timeline on the Student Dashboard (My Found Items / My Lost Items) showing the full progression of each report — Submitted → Under Review → Matched → Claim Approved → Resolved — with timestamps for each milestone and sighting events as inline nodes on lost item timelines.
 - **AI Photo Comparison (Gemini Vision)**: When an admin reviews a claim, a side-by-side panel displays the found item photo alongside the claimant's written description. A single "AI Compare" click calls Gemini Vision to assess visual-to-text similarity, returning an animated confidence ring, color-coded verdict (Definite Match → Definite Mismatch), a natural-language reasoning summary, and itemized similarities/differences lists.
@@ -478,10 +478,10 @@ The backend follows a RESTful pattern with the following core base routes:
 - **Performance Improvement**: 3-5x faster than native implementation
 
 ### Student ID Lookup Performance (Redis Cache)
-- **Cache Hit**: < 5ms response time (40-100x faster than Gviz)
-- **Cache Miss**: ~200-500ms (falls back to Google Sheets Gviz API)
+- **Cache Hit**: < 5ms response time (vs. ~200-500ms for a live Google Sheets network call)
+- **Cache Miss**: ~200-500ms (falls back to authenticated webhook or Gviz)
 - **Cache Refresh**: Every 6 hours via background sync job
-- **Availability**: 99.9% uptime (graceful fallback to Gviz if Redis unavailable)
+- **Resilience**: Graceful fallback keeps the scanner operational if Redis is unavailable
 
 ### Admin Dashboard Performance (Optimistic UI)
 - **Archive/Restore Operations**: < 16ms (20-30x faster than previous 300-500ms)
@@ -838,7 +838,7 @@ model XPBoostEvent {
 
 ### Phase 9: Offline Mode, Enterprise-Grade Audit Logs & AI Chatbot Concierge (Completed)
 - **Offline Sync**: Staff members can scan barcodes or submit "Found Items" while offline. The app saves the data securely in the browser and automatically uploads it in the background as soon as they walk back into a WiFi zone.
-- **Strict Audit Trail**: A dedicated, un-deletable "Audit Log" page for Administrators that shows exactly who performed which action and when. This ensures complete accountability and makes the system virtually bulletproof for school audits.
+- **Strict Audit Trail**: A dedicated, un-deletable "Audit Log" page for Administrators that shows exactly who performed which action and when. This ensures complete accountability and provides tamper-evident audit records for institutional reviews.
 - **AI Chatbot Concierge ("Smart Assistant")**: A floating AI chat widget integrated into the Student Dashboard. Powered by native **Gemini Function Calling** to autonomously execute database tools, **Semantic Vector Embeddings** for high-accuracy semantic matching, **Structured JSON Responses** that render responsive horizontal e-commerce product cards directly in the chat with click-to-claim routing, and **Few-Shot Injections** in system prompts to guarantee conversational empathy and rule compliance.
 
 ### Phase 10: Gamification, Data Governance, Performance & UI Optimization (Completed)
@@ -911,38 +911,17 @@ model XPBoostEvent {
   - **One-Click Re-Sync**: Admin dashboard button to automatically re-log missing items to Google Sheets
   - **Detailed Reporting**: Shows lost/found breakdown, reporter names, locations, and creation dates
   - **Silent Failure Prevention**: Catches logging failures that would otherwise go unnoticed until audits
-- **Redis Masterlist Cache**: High-performance local caching layer that eliminates Google Sheets Gviz API as a single point of failure for student ID resolution. Student ID lookups hit Redis first (< 5ms response) with automatic fallback to Google Sheets on cache miss. Background sync job refreshes cache every 6 hours. Scanner remains operational during Google Sheets outages, rate-limiting events, or network failures. Provides 40-100x faster lookups compared to direct Gviz API calls.
-- **Optimistic UI Updates**: Instant feedback system for all major admin dashboard actions that updates the UI immediately before server confirmation, making the interface feel 2-3x faster. Features include:
-  - **12 Optimistic Mutations**: Archive/restore items, update claim status, delete operations, user management, bulletin actions, comments, and spotlights
-  - **Automatic Rollback**: If server request fails, UI changes are automatically reverted with error notification
-  - **Performance Boost**: Admin actions now respond in <16ms instead of 200-500ms (15-30x faster perceived performance)
-  - **Native-App Feel**: Instant UI updates create desktop-application-like responsiveness
-  - **Zero Breaking Changes**: Existing components work without modification, purely frontend optimization
-  
-  **Performance Comparison:**
-  
-  | Action | Before | After | Improvement |
-  |--------|--------|-------|-------------|
-  | **Archive/Restore** | 300-500ms | <16ms | 20-30x faster |
-  | **Claim Status** | 200-400ms | <16ms | 15-25x faster |
-  | **Delete Operations** | 300-500ms | <16ms | 20-30x faster |
-  | **User Management** | 200-300ms | <16ms | 15-20x faster |
-- **Redis Masterlist Cache**: High-performance local caching layer that eliminates the Google Sheets Gviz API as a single point of failure for student ID resolution. Features include:
-  - **Sub-5ms Lookups**: Student ID queries hit Redis cache first (< 5ms) instead of network calls to Google Sheets (~200-500ms)
+- **Redis Masterlist Cache**: High-performance local caching layer that eliminates Google Sheets as a single point of failure for student ID resolution. Features include:
+  - **Sub-5ms Lookups**: Student ID queries hit Redis cache first (< 5ms) instead of making network calls to Google Sheets (~200-500ms)
   - **Automatic Background Sync**: Scheduled job syncs Redis with Google Sheets masterlist every 6 hours via node-cron
-  - **Graceful Fallback**: On cache miss or Redis failure, system automatically falls back to Google Sheets Gviz API
+  - **Graceful Fallback**: On cache miss or Redis failure, system automatically falls back to the authenticated webhook or Gviz endpoint
   - **Startup Cache Warming**: Redis cache is populated immediately on server startup before first request
   - **Resilient Architecture**: Scanner remains operational during Google Sheets outages or rate-limiting events
-  - **Zero Breaking Changes**: Drop-in replacement with no modifications to existing API contracts
-  
-  **Performance Comparison:**
-  
-  | Metric | Current (Gviz) | After Upgrade (Redis) |
-  |--------|----------------|----------------------|
-  | **Speed** | ~200-500ms (network) | <5ms (local cache) |
-  | **Google outage** | ❌ Scanner breaks | ✅ Scanner keeps working |
-  | **Rate limits** | ❌ Can get blocked | ✅ Only syncs every 6hrs |
-  | **Reliability** | Fragile | Resilient |
+- **Optimistic UI Updates**: Instant feedback system for all major admin dashboard actions that updates the UI immediately before server confirmation. Features include:
+  - **12 Optimistic Mutations**: Archive/restore items, update claim status, delete operations, user management, bulletin actions, comments, and spotlights
+  - **Automatic Rollback**: If server request fails, UI changes are automatically reverted with error notification
+  - **Perceived Performance**: Admin actions respond in <16ms instead of 200-500ms (15-30x perceived improvement)
+  - **Native-App Feel**: Instant UI updates create desktop-application-like responsiveness
 
 ### Phase 11: Real-Time Sightings, AI Duplicate Detection, Engagement Upgrades & AI Claim Tools (Completed)
 - **Leaderboard Profile Cards**: Allows students to view detailed profile cards directly from the leaderboard by clicking any student's row, displaying their achievements, rank title, and total XP.
@@ -981,3 +960,78 @@ model XPBoostEvent {
   | **Color** | Violet pulsing dots (with popup showing which item was sighted, room, and time) |
   | **Purpose** | Help search parties or staff visualize ALL active lost item sightings in one view |
   | **Action** | Filter by "Sighting Pins" toggle, click marker to see item details, or browse recent room sightings in the sidebar |
+
+---
+
+## Testing
+
+The project has two test suites — one for the backend service layer and one for frontend component rendering — both using property-based testing with [fast-check](https://github.com/dubzzz/fast-check) to cover a broad range of inputs automatically.
+
+### Backend (Jest + fast-check)
+
+Location: `server/src/app/modules/bulletinPost/__tests__/Bulletin.property.test.ts`
+
+```bash
+cd server
+npm test
+# or for watch mode:
+npm run test:watch
+```
+
+**What it covers (13 property tests):**
+
+| Property | What is verified |
+|---|---|
+| **Post creation round-trip** | Created posts have non-null `id`/`createdAt`; `getPosts` returns the matching record |
+| **Whitespace name rejection** | `createPostSchema` rejects item names made entirely of whitespace |
+| **Short description rejection** | Descriptions shorter than 10 characters are rejected by schema validation |
+| **Future date rejection** | `dateLost` values set in the future are always rejected |
+| **Pagination page size** | `getPosts` returns at most `limit` posts and includes `meta.total`, `meta.page`, `meta.totalPage` |
+| **Search filtering correctness** | Every post returned by a search contains the search term in name, description, or location |
+| **Tip submission round-trip** | Submitted tips appear in `getTips`; post `tipCount` increments by exactly 1 |
+| **Short tip rejection** | Tip details shorter than 10 characters are rejected |
+| **Tips ordering** | `getTips` always returns results in reverse-chronological order |
+| **Post soft-delete** | Soft-deleted posts no longer appear in `getPosts` results |
+| **Tip deletion** | After deletion, tip is absent from `getTips`; post `tipCount` decrements by 1 |
+| **Post rate-limit config** | `postCreationLimiter` is configured to max 5 requests per hour |
+| **Tip rate-limit config** | `tipSubmissionLimiter` is configured to max 20 requests per hour |
+
+All 13 tests pass. Prisma is fully mocked — no database connection required.
+
+---
+
+### Frontend (Vitest + fast-check + Testing Library)
+
+Location: `frontend/src/pages/bulletin/__tests__/Bulletin.property.test.tsx`
+
+```bash
+cd frontend
+npm test
+# or for watch mode:
+npm run test:watch
+```
+
+**What it covers (5 property tests):**
+
+| Property | What is verified |
+|---|---|
+| **Card renders item name and location** | `BulletinBoard` card always renders `itemName` and `location` for any valid post object |
+| **Tip count displayed** | Tip count badge is always present and reflects the `tipCount` field |
+| **Community Post badge** | The "Community Post" badge is visible on every non-resolved post |
+| **Resolved badge visible** | Posts flagged `isResolved: true` show a "Resolved" badge |
+| **"I Saw This" disabled when resolved** | The sighting button is disabled on resolved posts |
+
+All 5 tests pass. RTK Query hooks and auth are mocked — no server or Redux store needed.
+
+> **Note on the Vite server hang:** Vitest exits with code `0` (all tests pass) but prints a warning that the Vite server timed out on close. This is a [known Vitest/Vite interaction issue](https://vitest.dev/guide/reporters.html#hanging-process-reporter) unrelated to test correctness. CI pipelines should use `vitest run` with a timeout to work around it.
+
+---
+
+### Security Tests
+
+Manual security verification commands are documented in [SECURITY_HARDENING.md](./SECURITY_HARDENING.md#7-testing-recommendations), covering:
+- **IDOR** on claims (returns `401/403` for unauthorized access)
+- **Self-approval prevention** (returns error for own-claim approval attempts)
+- **Rate limiting** (6th login attempt within 15 min returns `429 Too Many Requests`)
+- **Socket authentication** (unauthenticated join-room returns an error)
+- **File upload MIME validation** (PHP-in-JPG disguise is rejected)

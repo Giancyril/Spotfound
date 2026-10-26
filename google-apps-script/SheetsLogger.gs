@@ -84,13 +84,72 @@ function doPost(e) {
   }
 }
 
-function doGet() {
+// Secret key for securing authenticated masterlist and webhook operations.
+// Configure this in Google Apps Script -> Project Settings -> Script Properties as 'API_SECRET_KEY'
+// or set a default key matching GOOGLE_SHEETS_ACCESS_KEY in backend .env.
+const MASTERLIST_SHEET = "Copy of Master List";
+
+function doGet(e) {
+  // If requesting the student masterlist, enforce secret key authentication
+  if (e && e.parameter && e.parameter.action === "masterlist") {
+    const configuredSecret = PropertiesService.getScriptProperties().getProperty("API_SECRET_KEY") || "nbsc_masterlist_secret_key_2026";
+    const providedKey = e.parameter.key || e.parameter.token;
+
+    if (!providedKey || providedKey !== configuredSecret) {
+      return ContentService.createTextOutput(JSON.stringify({
+        success: false,
+        error: "Unauthorized: Invalid or missing security key."
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    try {
+      const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(MASTERLIST_SHEET);
+      if (!sheet) {
+        return ContentService.createTextOutput(JSON.stringify({
+          success: false,
+          error: `Masterlist sheet "${MASTERLIST_SHEET}" not found.`
+        })).setMimeType(ContentService.MimeType.JSON);
+      }
+
+      const rows = sheet.getDataRange().getValues();
+      const students = [];
+
+      // Assume row 0 is header; iterate data rows
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        const id = String(row[0] || "").trim();
+        if (id) {
+          students.push({
+            id: id,
+            email: String(row[1] || "").trim(),
+            name: String(row[2] || "").trim(),
+            course: String(row[3] || "").trim(),
+            department: String(row[3] || "").trim(),
+            yearLevel: String(row[4] || "").trim()
+          });
+        }
+      }
+
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        count: students.length,
+        data: students
+      })).setMimeType(ContentService.MimeType.JSON);
+    } catch (err) {
+      return ContentService.createTextOutput(JSON.stringify({
+        success: false,
+        error: "Error reading masterlist: " + err.toString()
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+  }
+
   return ContentService.createTextOutput(JSON.stringify({
     success: true,
-    message: "Google Sheets Logger Webhook is running",
+    message: "Google Sheets Logger & Masterlist Webhook is running",
     sheets: {
       "Lost Items": LOST_ITEMS_SHEET,
-      "Found Items": FOUND_ITEMS_SHEET
+      "Found Items": FOUND_ITEMS_SHEET,
+      "Masterlist": MASTERLIST_SHEET
     }
   })).setMimeType(ContentService.MimeType.JSON);
 }

@@ -48,10 +48,22 @@ const parseGvizResponse = (data: string): StudentRow[] => {
   return (json.table.rows as any[]).filter(r => r.c && r.c[0]?.v).map(parseRow);
 };
 
+const getSecureMasterlistUrl = () => {
+  if (process.env.GOOGLE_SHEETS_MASTERLIST_URL) {
+    return process.env.GOOGLE_SHEETS_MASTERLIST_URL;
+  }
+  if (process.env.GOOGLE_SHEETS_WEBHOOK_URL) {
+    const separator = process.env.GOOGLE_SHEETS_WEBHOOK_URL.includes("?") ? "&" : "?";
+    const key = process.env.GOOGLE_SHEETS_ACCESS_KEY || "nbsc_masterlist_secret_key_2026";
+    return `${process.env.GOOGLE_SHEETS_WEBHOOK_URL}${separator}action=masterlist&key=${encodeURIComponent(key)}`;
+  }
+  return null;
+};
+
 // ── Core fetch ────────────────────────────────────────────────────────────────
 
 /**
- * Fetch the full masterlist from Gviz and push it into Redis.
+ * Fetch the full masterlist from authenticated webhook (or Gviz fallback) and push it into Redis.
  * Safe to call manually (e.g. from an admin "force refresh" endpoint).
  */
 export const syncMasterlistNow = async (): Promise<{ success: boolean; count: number; error?: string }> => {
@@ -63,6 +75,28 @@ export const syncMasterlistNow = async (): Promise<{ success: boolean; count: nu
 
   console.log("[Sync] Fetching masterlist from Google Sheets…");
   try {
+    const secureUrl = getSecureMasterlistUrl();
+    if (secureUrl) {
+      const response = await fetch(secureUrl);
+      if (response.ok) {
+        const payload: any = await response.json();
+        if (payload?.success && Array.isArray(payload?.data)) {
+          const rows: StudentRow[] = payload.data.map((s: any) => ({
+            id: String(s.id || "").trim(),
+            email: String(s.email || "").trim(),
+            name: String(s.name || "").trim(),
+            course: String(s.course || s.department || "").trim(),
+            department: String(s.department || s.course || "").trim(),
+            yearLevel: String(s.yearLevel || "").trim(),
+          }));
+          await setMasterlistCache(rows);
+          console.log(`[Sync] ✓ Masterlist synced via authenticated webhook – ${rows.length} students`);
+          return { success: true, count: rows.length };
+        }
+      }
+    }
+
+    // Fallback to Gviz if webhook not configured
     const response = await fetch(GVIZ_URL);
     if (!response.ok) {
       throw new Error(`Gviz responded with HTTP ${response.status}`);
