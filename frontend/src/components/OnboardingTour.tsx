@@ -47,7 +47,7 @@ const STEPS = [
     tag: "Everyone",
     tagColor: "text-indigo-400 border-indigo-500/20 bg-indigo-500/10",
     title: "Browse Found Items",
-    desc: "Check the Found Items board to see everything turned in to the SAS office. Each listing includes photos, location, date found, and claim instructions.",
+    desc: "Check the Found Items board to see everything turned in to SpotFound. Each listing includes photos, location, date found, and claim instructions.",
     highlight: {
       icon: <FaMapMarkerAlt size={9} />,
       text: "Filter by category, location, or date",
@@ -61,7 +61,7 @@ const STEPS = [
     tag: "Students",
     tagColor: "text-emerald-400 border-emerald-500/20 bg-emerald-500/10",
     title: "Claim Your Item",
-    desc: "Found your item on the board? Submit a claim with the distinguishing features, lost date, and contact info or visit the SAS office directly to claim in person.",
+    desc: "Found your item on the board? Submit a claim with the distinguishing features, lost date, and contact info or visit SpotFound directly to claim in person.",
     highlight: {
       icon: <FaCheckCircle size={9} />,
       text: "Email notification sent on approval or rejection",

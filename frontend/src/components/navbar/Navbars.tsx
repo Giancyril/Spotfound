@@ -345,12 +345,12 @@ export function Navbars() {
           <div className="flex items-center space-x-2.5 select-none">
             <img
               src="/sas lost and found logo.png"
-              alt="SAS Lost and Found Logo"
+              alt="SpotFound Logo"
               className="w-9 h-9 object-contain shrink-0"
               onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
             />
             <div>
-              <span className="whitespace-nowrap text-sm font-black text-white tracking-widest leading-none">NBSC SAS</span>
+              <span className="whitespace-nowrap text-sm font-black text-white tracking-widest leading-none">SPOTFOUND</span>
               <p className="text-gray-500 text-[10px] font-medium tracking-wide leading-tight hidden sm:block">Lost & Found Management System</p>
             </div>
           </div>
@@ -553,7 +553,7 @@ export function Navbars() {
                     {users?.name || users?.username || (isAdmin ? "Admin" : "Student")}
                   </p>
                   <p className="text-[11px] text-white/35 mt-0.5">
-                    {isAdmin ? "Administrator" : `Student · ${users?.schoolId || "NBSC"}`}
+                    {isAdmin ? "Administrator" : `Student · ${users?.schoolId || "SpotFound"}`}
                   </p>
                 </div>
                 {!isAdmin && (

@@ -24,7 +24,7 @@ const sendLostItemEmail = (req, res) => __awaiter(void 0, void 0, void 0, functi
         if (!recipient || !recipient.toEmail) {
             return (0, response_1.default)(res, { statusCode: http_status_codes_1.StatusCodes.BAD_REQUEST, success: false, message: "Recipient email is required", data: null });
         }
-        const fromName = (smtp === null || smtp === void 0 ? void 0 : smtp.fromName) || process.env.SMTP_FROM_NAME || "NBSC SAS Lost & Found";
+        const fromName = (smtp === null || smtp === void 0 ? void 0 : smtp.fromName) || process.env.SMTP_FROM_NAME || "SpotFound Lost & Found";
         console.log("[email] sendLostItemEmail → to:", recipient === null || recipient === void 0 ? void 0 : recipient.toEmail, "| SENDGRID_KEY set:", !!process.env.SENDGRID_API_KEY);
         const template = (0, emailTemplates_1.lostItemReportedTemplate)({
             reporterName: recipient.reporterName,
@@ -55,7 +55,7 @@ const sendClaimApprovedEmail = (req, res) => __awaiter(void 0, void 0, void 0, f
         if (!recipient || !recipient.toEmail) {
             return (0, response_1.default)(res, { statusCode: http_status_codes_1.StatusCodes.BAD_REQUEST, success: false, message: "Recipient email is required", data: null });
         }
-        const fromName = (smtp === null || smtp === void 0 ? void 0 : smtp.fromName) || process.env.SMTP_FROM_NAME || "NBSC SAS Lost & Found";
+        const fromName = (smtp === null || smtp === void 0 ? void 0 : smtp.fromName) || process.env.SMTP_FROM_NAME || "SpotFound Lost & Found";
         console.log("[email] sendClaimApprovedEmail → to:", recipient === null || recipient === void 0 ? void 0 : recipient.toEmail, "| SENDGRID_KEY set:", !!process.env.SENDGRID_API_KEY);
         const template = (0, emailTemplates_1.itemClaimedTemplate)({
             claimantName: recipient.claimantName,

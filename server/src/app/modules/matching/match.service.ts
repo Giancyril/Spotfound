@@ -198,7 +198,7 @@ const notifyMatch = async (
     return;
   }
 
-  const senderName = process.env.SMTP_FROM_NAME ?? "NBSC Lost & Found";
+  const senderName = process.env.SMTP_FROM_NAME ?? "SpotFound Lost & Found";
 
   // Deduplication — skip if we already sent this exact pair
   const isDuplicate = await alreadyNotified(lostItem.id, foundItem.id);

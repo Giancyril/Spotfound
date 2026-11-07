@@ -162,7 +162,7 @@ const notifyMatch = (lostItem, foundItem) => __awaiter(void 0, void 0, void 0, f
         console.error("[SmartMatch] SMTP_FROM_EMAIL env var is not set — cannot send notification");
         return;
     }
-    const senderName = (_b = process.env.SMTP_FROM_NAME) !== null && _b !== void 0 ? _b : "NBSC Lost & Found";
+    const senderName = (_b = process.env.SMTP_FROM_NAME) !== null && _b !== void 0 ? _b : "SpotFound Lost & Found";
     // Deduplication — skip if we already sent this exact pair
     const isDuplicate = yield alreadyNotified(lostItem.id, foundItem.id);
     if (isDuplicate) {

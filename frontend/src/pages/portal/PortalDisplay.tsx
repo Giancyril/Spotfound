@@ -68,7 +68,7 @@ const CombinedQRSlide = () => {
   const reportSteps = [
     { num: "01", title: "Scan the QR Code",    desc: "Point your phone camera at the code to open the reporting form." },
     { num: "02", title: "Fill in Item Details", desc: "Provide a description, location last seen, and date of loss." },
-    { num: "03", title: "Submit Your Report",   desc: "Visit the SAS Office to check for updates on your item." },
+    { num: "03", title: "Submit Your Report",   desc: "Visit SpotFound to check for updates on your item." },
   ];
   const browseSteps = [
     { num: "01", title: "Scan the QR Code",   desc: "Open the Found Items directory instantly on your phone." },
@@ -87,12 +87,12 @@ const CombinedQRSlide = () => {
           <div className="text-center shrink-0 mb-8 pt-6">
             {/* College Name - Small, Wide-spaced, Bold Uppercase */}
             <p className="text-slate-400 text-[11px] md:text-xs font-bold uppercase tracking-[0.4em] mb-2">
-              Northern Bukidnon State College
+              SpotFound
             </p>
 
             {/* Department Name - Large, High-impact Hero Text */}
             <h1 className="text-white text-4xl md:text-5xl font-black tracking-tight leading-none mb-4">
-              Student Affairs & Services
+              Lost &amp; Found Portal
             </h1>
 
             {/* System Title - Framed by decorative horizontal lines */}
@@ -225,7 +225,7 @@ const CombinedQRSlide = () => {
 
           {/* ── Footer ── */}
           <div className="flex items-center justify-center border-t border-white/5 pt-2 shrink-0">
-            <p className="text-slate-500 text-[10px] uppercase tracking-widest font-semibold">NBSC • Student Affairs and Services</p>
+            <p className="text-slate-500 text-[10px] uppercase tracking-widest font-semibold">SpotFound • Lost &amp; Found System</p>
           </div>
 
         </div>
@@ -259,7 +259,7 @@ const ItemCard = ({
             </div>
             <div className="text-center px-2 sm:px-3">
               <p className="text-slate-300 text-xs sm:text-sm font-bold">Image Hidden</p>
-              <p className="text-slate-500 text-[10px] sm:text-xs mt-1 leading-relaxed">Claim in person at the SAS Office</p>
+              <p className="text-slate-500 text-[10px] sm:text-xs mt-1 leading-relaxed">Claim in person at SpotFound</p>
             </div>
           </div>
         ) : img ? (
@@ -291,7 +291,7 @@ const ItemCard = ({
           {name}
         </h3>
         {restricted ? (
-          <p className="text-slate-400 text-[10px] sm:text-xs leading-relaxed">Visit the SAS Office to claim this item.</p>
+          <p className="text-slate-400 text-[10px] sm:text-xs leading-relaxed">Visit SpotFound to claim this item.</p>
         ) : (
           <p className="text-slate-300 text-[10px] sm:text-xs md:text-sm leading-relaxed line-clamp-2">{description || "No description provided."}</p>
         )}
@@ -403,8 +403,8 @@ const Panel = ({
           </h2>
           <p className="text-slate-300 text-[9px] sm:text-[10px] md:text-xs font-semibold leading-tight mt-0.5 sm:mt-1 line-clamp-1">
             {accentColor === "red"
-              ? "Reported Missing: Not held at SAS Office"
-              : "Recovered Items: Held at SAS Office"}
+              ? "Reported Missing: Not held at SpotFound"
+              : "Recovered Items: Held at SpotFound"}
           </p>
           <p className="text-slate-500 text-[8px] sm:text-[9px] md:text-[10px] mt-0.5 sm:mt-1 font-bold uppercase tracking-tight">
             {total} {total === 1 ? "item" : "items"} on record
@@ -538,9 +538,9 @@ const Ticker = ({ lostCount, foundCount }: { lostCount: number; foundCount: numb
   const items = [
     `${lostCount} item${lostCount !== 1 ? "s" : ""} currently reported lost`,
     `${foundCount} item${foundCount !== 1 ? "s" : ""} recovered and awaiting claim`,
-    "Visit the SAS Office to report or claim an item",
-    "Bring your school ID when claiming found items",
-    "NBSC Student Affairs and Services — Lost & Found Management System",
+    "Visit SpotFound to report or claim an item",
+    "Bring your ID when claiming found items",
+    "SpotFound — Lost & Found Management System",
   ];
   const repeated = [...items, ...items];
 

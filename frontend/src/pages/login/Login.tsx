@@ -181,7 +181,7 @@ const Login = () => {
         <div className="flex items-center justify-center gap-2 mb-8">
           <div className="h-px flex-1 bg-gradient-to-r from-transparent to-blue-500/30" />
           <span className="text-[10px] font-bold text-blue-400/60 uppercase tracking-[0.25em]">
-            Student Affairs & Services
+            SpotFound Platform
           </span>
           <div className="h-px flex-1 bg-gradient-to-l from-transparent to-blue-500/30" />
         </div>
@@ -204,16 +204,16 @@ const Login = () => {
                   <div className="absolute inset-0" />
                   <img
                     src="/sas lost and found logo.png"
-                    alt="SAS Lost and Found"
+                    alt="SpotFound"
                     className="relative w-14 h-14 object-contain"
                     onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                   />
                 </div>
                 <h1 className="text-[22px] font-black text-gray-300 tracking-tight leading-none mb-1">
-                  Lost & Found
+                  SpotFound
                 </h1>
                 <p className="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-medium">
-                  Management Sytem
+                  Lost & Found System
                 </p>
               </div>
 
@@ -345,7 +345,7 @@ const Login = () => {
               {/* Footer note */}
               <p className="mt-6 text-center text-[10px] text-gray-700 leading-relaxed">
                 For access issues, visit the{" "}
-                <span className="text-gray-500">SAS Office</span>
+                <span className="text-gray-500">SpotFound Office</span>
               </p>
             </div>
 
@@ -356,7 +356,7 @@ const Login = () => {
 
         {/* Bottom label */}
         <p className="text-center text-[9px] text-gray-700 uppercase tracking-[0.2em] mt-6 font-medium">
-          NBSC · Lost & Found System · {new Date().getFullYear()}
+          SpotFound · Lost & Found System · {new Date().getFullYear()}
         </p>
       </div>
     </section>

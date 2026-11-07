@@ -89,7 +89,7 @@ const TiltImage = ({ src, fillHeight = false }: { src: string; fillHeight?: bool
     >
       <img
         src={src}
-        alt="Student Affairs, Services, and Development Division"
+        alt="SpotFound"
         className={`w-full block object-cover ${fillHeight ? "h-full" : ""}`}
         style={fillHeight ? { position: "absolute", inset: 0, height: "100%", width: "100%" } : { maxHeight: 420 }}
       />
@@ -166,12 +166,12 @@ const AboutUs = () => {
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight tracking-tight mb-4">
                 Built for the{" "}
                 <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                  SAS Community
+                  SpotFound Community
                 </span>
               </h2>
               <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full mb-5" />
               <p className="text-gray-400 text-sm sm:text-base leading-relaxed max-w-2xl text-justify">
-                The <strong className="text-white font-semibold">SAS Lost & Found Management System</strong> is designed exclusively for students, faculty, and staff — providing a safe, organized, and transparent way to report, track, and recover lost items within campus premises.
+                The <strong className="text-white font-semibold">SpotFound Management System</strong> is designed exclusively for students, faculty, and staff — providing a safe, organized, and transparent way to report, track, and recover lost items within campus premises.
               </p>
             </div>
 
@@ -187,7 +187,7 @@ const AboutUs = () => {
             {/* Left — audience cards + stats */}
             <div className="flex flex-col h-full">
               <p className="text-gray-400 text-sm leading-relaxed mb-6 text-justify">
-                We believe a well-managed lost and found system reflects the integrity and care of our school community. Every item reported and returned strengthens the trust we hold for one another as part of SAS.
+                We believe a well-managed lost and found system reflects the integrity and care of our school community. Every item reported and returned strengthens the trust we hold for one another as part of SpotFound.
               </p>
 
               <div className="flex flex-col gap-3 text-justify">
@@ -248,7 +248,7 @@ const AboutUs = () => {
                 <div className="relative z-10">
                   <h3 className="text-white font-bold text-base sm:text-lg mb-4">Our Mission</h3>
                   <p className="text-gray-400 text-sm leading-relaxed text-justify">
-                    To provide SAS with a reliable, school-appropriate lost and found system that promotes honesty, responsibility, and respect for each other's belongings — core values at the heart of our school culture.
+                    To provide SpotFound with a reliable, community-first lost and found system that promotes honesty, responsibility, and respect for each other's belongings — core values at the heart of our culture.
                   </p>
                 </div>
               </div>
@@ -259,8 +259,8 @@ const AboutUs = () => {
                 {[
                   { emoji: "🔍", label: "Transparency", desc: "Real-time status updates on every reported item" },
                   { emoji: "🛡️", label: "Privacy", desc: "Sensitive items are blurred; only verified claimants see details" },
-                  { emoji: "⚡", label: "Efficiency", desc: "Streamlined SAS office workflow for faster item resolution" },
-                  { emoji: "🤝", label: "Integrity", desc: "Claims are verified by the SAS office before release" },
+                  { emoji: "⚡", label: "Efficiency", desc: "Streamlined SpotFound workflow for faster item resolution" },
+                  { emoji: "🤝", label: "Integrity", desc: "Claims are verified by SpotFound before release" },
                 ].map((v) => (
                   <div key={v.label} className="au-value-card bg-gray-900 border border-gray-800 rounded-xl p-4">
                     <div className="text-xl mb-2">{v.emoji}</div>

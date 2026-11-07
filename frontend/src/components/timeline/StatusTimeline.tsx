@@ -174,7 +174,7 @@ const StatusTimeline: React.FC<TimelineItemProps> = ({ item, type }) => {
   steps.push({
     key: "under_review",
     label: "Under Review",
-    description: "The Student Affairs Services (SAS) office is reviewing the details.",
+    description: "The SpotFound team is reviewing the details.",
     date: item.createdAt || item.date,
     isReached: true,
     type: "status",
@@ -215,7 +215,7 @@ const StatusTimeline: React.FC<TimelineItemProps> = ({ item, type }) => {
     label: "Claim Approved",
     description: type === "found"
       ? `Claim submitted by ${activeClaim?.claimantName || "claimant"} approved.`
-      : "Your claim verification was approved by the SAS office.",
+      : "Your claim verification was approved by SpotFound.",
     date: approvalDate,
     isReached: !!isApproved,
     type: "status",
@@ -337,7 +337,7 @@ const StatusTimeline: React.FC<TimelineItemProps> = ({ item, type }) => {
               {node.key === "claim_approved" && node.note && (
                 <div className="mt-2.5 bg-emerald-950/20 rounded-lg p-2.5 border border-emerald-800/30 text-[11px] text-emerald-300/90 italic">
                   <span className="font-bold text-[10px] uppercase block not-italic tracking-wider mb-1 text-emerald-400">
-                    SAS Office Note:
+                    SpotFound Office Note:
                   </span>
                   "{node.note}"
                 </div>

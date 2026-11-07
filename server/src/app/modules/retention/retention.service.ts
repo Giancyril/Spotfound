@@ -288,7 +288,7 @@ const sendWeeklyDeletionReport = async (performer?: { id: string; name: string }
   // Use new styled email template
   const template = weeklyDeletionReportTemplate({ pendingItems });
 
-  const fromName = process.env.SMTP_FROM_NAME || "NBSC SAS Lost & Found";
+  const fromName = process.env.SMTP_FROM_NAME || "SpotFound Lost & Found";
   const fromEmail = process.env.SMTP_FROM_EMAIL || "mijaresgiancyril@gmail.com";
 
   // Send email to all admins

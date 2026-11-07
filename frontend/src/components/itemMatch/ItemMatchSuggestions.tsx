@@ -138,7 +138,7 @@ const ItemMatchSuggestions = ({ categoryId, itemName, location }: Props) => {
       {/* Footer */}
       <div className="px-4 py-2.5 border-t border-blue-500/10 flex items-center justify-between">
         <p className="text-[10px] text-blue-400/50">
-          If you know the owner, direct them to the item's page to file a claim or visit the SAS Office.
+          If you know the owner, direct them to the item's page to file a claim or visit SpotFound.
         </p>
         <Link to="/foundItems" target="_blank" rel="noopener noreferrer"
           className="text-[10px] text-blue-400 hover:text-blue-300 font-medium transition-colors whitespace-nowrap">

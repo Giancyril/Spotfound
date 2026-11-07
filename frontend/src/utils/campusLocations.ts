@@ -1,4 +1,4 @@
-// Predefined coordinate map for NBSC campus locations
+// Predefined coordinate map for SpotFound campus locations
 // Update these coordinates to match your actual campus map
 export const CAMPUS_COORDINATES: Record<string, [number, number]> = {
     // ── Buildings ──

@@ -33,14 +33,14 @@ const Banner = () => {
     {
       badge: "Found something on campus?",
       title: "Please Return It to",
-      subtitle: "the SAS Office",
+      subtitle: "SpotFound",
       description:
-        "If you've found something on school grounds, please bring it to the Student Affairs Office. Our staff will log it securely and notify the owner right away your act of honesty strengthens our school community.",
+        "If you've found something on school grounds, please bring it to SpotFound. Our staff will log it securely and notify the owner right away your act of honesty strengthens our school community.",
       descShort:
-        "Bring found items to the Student Affairs Office. Staff will log it and notify the owner.",
+        "Bring found items to SpotFound. Staff will log it and notify the owner.",
       // Office info shown instead of a form action
       officeInfo: {
-        name: "Student Affairs Office — SWDC",
+        name: "SpotFound Office",
         location: "Ground floor, main building",
         hours: "Mon – Fri, 8:00 AM – 5:00 PM",
         note: "Bring the item in person. No drop-off boxes.",

@@ -23,8 +23,8 @@ const Footers = () => {
                 to="/about"
                 className="text-gray-400 hover:text-blue-400 text-[9px] min-[375px]:text-[10px] sm:text-sm text-left leading-none transition-colors duration-200"
               >
-                <span className="sm:hidden">Lost &amp; Found</span>
-                <span className="hidden sm:inline">SAS Lost &amp; Found Management System</span>
+                <span className="sm:hidden">SpotFound</span>
+                <span className="hidden sm:inline">SpotFound Lost &amp; Found Management System</span>
               </Link>
             </div>
           </div>
@@ -39,7 +39,7 @@ const Footers = () => {
                 <FaEnvelope className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
               </div>
               <p className="text-gray-400 text-[9px] min-[375px]:text-[10px] sm:text-sm leading-none break-all sm:break-normal">
-                sas@nbsc.edu.ph
+                support@spotfound.com
               </p>
             </div>
           </div>
@@ -54,13 +54,13 @@ const Footers = () => {
                 <FaFacebook className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
               </div>
               <a
-                href="https://www.facebook.com/nbscstudentaffairsandservices"
+                href="https://www.facebook.com/spotfound"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-400 text-[9px] min-[375px]:text-[10px] sm:text-sm leading-none transition-colors duration-200"
               >
                 <span className="sm:hidden">Facebook</span>
-                <span className="hidden sm:inline">SAS Official Facebook Page</span>
+                <span className="hidden sm:inline">SpotFound Official Facebook Page</span>
               </a>
             </div>
           </div>
@@ -77,20 +77,20 @@ const Footers = () => {
           <p className="text-gray-400 text-[9px] sm:text-xs">
             {/* Mobile */}
             <span className="sm:hidden">
-              © 2026 <span className="font-semibold text-gray-300">NBSC SAS.</span> All Rights Reserved.
+              © 2026 <span className="font-semibold text-gray-300">SpotFound.</span> All Rights Reserved.
             </span>
             {/* Desktop */}
             <span className="hidden sm:inline">
-              © 2026 <span className="font-semibold text-gray-300">SAS Lost &amp; Found Management System.</span> All Rights Reserved.
+              © 2026 <span className="font-semibold text-gray-300">SpotFound Lost &amp; Found Management System.</span> All Rights Reserved.
             </span>
           </p>
 
           {/* Note */}
           <p className="text-gray-400 text-[9px] sm:text-xs">
             {/* Mobile */}
-            <span className="sm:hidden">Visit the SAS Office for item concerns.</span>
+            <span className="sm:hidden">Visit SpotFound for item concerns.</span>
             {/* Desktop */}
-            <span className="hidden sm:inline">For item concerns, visit the SAS Office during school hours.</span>
+            <span className="hidden sm:inline">For item concerns, visit SpotFound during operating hours.</span>
           </p>
 
         </div>

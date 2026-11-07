@@ -14,35 +14,36 @@ const app = (0, express_1.default)();
 app.use((0, helmet_1.default)());
 app.disable("x-powered-by");
 app.set("trust proxy", 1);
-const ALLOWED_ORIGINS = [
+const isProduction = process.env.NODE_ENV === "production";
+// Parse allowed origins from environment variable (comma-separated), falling back to production URL
+const configuredOrigins = process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(",").map(o => o.trim()).filter(Boolean)
+    : [];
+const defaultOrigins = [
     "https://lost-and-found-liart-seven.vercel.app",
 ];
-if (process.env.NODE_ENV !== "production") {
-    ALLOWED_ORIGINS.push("http://localhost:5173", "http://127.0.0.1:5173");
-}
-// ✅ SECURITY: CORS Configuration Check
-// WARNING: Remove localhost origins before deploying to production
-if (process.env.NODE_ENV === "production") {
-    const devOrigins = ALLOWED_ORIGINS.filter(origin => origin.includes("localhost") || origin.includes("127.0.0.1"));
-    if (devOrigins.length > 0) {
-        console.error("⚠️  SECURITY WARNING: Development origins detected in production CORS policy:");
-        console.error(devOrigins);
-        console.error("Remove these origins from ALLOWED_ORIGINS before deploying!");
-    }
-}
+// Production origins must never include development or loopback domains
+const productionOrigins = Array.from(new Set([...defaultOrigins, ...configuredOrigins]))
+    .filter(origin => !origin.includes("localhost") && !origin.includes("127.0.0.1"));
+const developmentOrigins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+];
+const ALLOWED_ORIGINS = isProduction
+    ? productionOrigins
+    : Array.from(new Set([...productionOrigins, ...developmentOrigins]));
 const corsOptions = {
     origin: (origin, callback) => {
-        // Allow requests with no origin (e.g. curl, server-to-server, or mobile apps)
+        // Allow requests with no origin (e.g. mobile apps, server-to-server, curl)
         if (!origin)
             return callback(null, true);
-        // Allow exact-match origins
-        if (ALLOWED_ORIGINS.includes(origin))
+        // Exact-match against strict whitelist
+        if (ALLOWED_ORIGINS.includes(origin)) {
             return callback(null, true);
-        // Dynamically allow any *.github.io subdomain (for SAS Portal embedded iframe)
-        if (origin.endsWith(".github.io"))
-            return callback(null, true);
-        // Reject everything else
-        callback(new Error(`CORS policy: origin '${origin}' is not allowed`));
+        }
+        // Explicitly reject untrusted origins
+        return callback(null, false);
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
@@ -60,7 +61,6 @@ app.options("*", (0, cors_1.default)(corsOptions));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const csrf_csrf_1 = require("csrf-csrf");
 const config_1 = __importDefault(require("./app/config/config"));
-const isProduction = process.env.NODE_ENV === "production";
 const { doubleCsrfProtection, generateCsrfToken } = (0, csrf_csrf_1.doubleCsrf)({
     getSecret: () => config_1.default.jwt_secrets || "default_csrf_secret",
     getSessionIdentifier: (req) => { var _a; return ((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.refreshToken) || req.ip || "anonymous"; },

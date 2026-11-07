@@ -31,7 +31,7 @@ export const lostItemReportedTemplate = (data: {
                   <table width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">NBSC SAS Lost &amp; Found</p>
+                        <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">SpotFound Lost &amp; Found</p>
                         <h1 style="margin:0;font-size:22px;font-weight:700;color:#0f172a;">Lost Item Report Received</h1>
                       </td>
                       <td align="right" valign="top">
@@ -93,7 +93,7 @@ export const lostItemReportedTemplate = (data: {
                     <tr>
                       <td style="padding:16px 20px;">
                         <p style="margin:0;font-size:13px;color:#1e40af;line-height:1.6;">
-                          <strong>What happens next?</strong> The SAS office will review your report and monitor incoming found items for potential matches. You can also track the status in real-time on our website.
+                          <strong>What happens next?</strong> The SpotFound office will review your report and monitor incoming found items for potential matches. You can also track the status in real-time on our website.
                         </p>
                       </td>
                     </tr>
@@ -108,8 +108,8 @@ export const lostItemReportedTemplate = (data: {
                   <table width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">NBSC SAS Lost &amp; Found System</p>
-                        <p style="margin:0;font-size:12px;color:#94a3b8;">Northern Bukidnon State College · Student Affairs Services</p>
+                        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">SpotFound Lost &amp; Found System</p>
+                        <p style="margin:0;font-size:12px;color:#94a3b8;">SpotFound · Lost &amp; Found Services</p>
                       </td>
                       <td align="right">
                         <p style="margin:0;font-size:11px;color:#cbd5e1;">Do not reply to this email</p>
@@ -161,7 +161,7 @@ export const foundItemReportedTemplate = (data: {
                   <table width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">NBSC SAS Lost &amp; Found</p>
+                        <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">SpotFound Lost &amp; Found</p>
                         <h1 style="margin:0;font-size:22px;font-weight:700;color:#0f172a;">Found Item Report Received</h1>
                       </td>
                       <td align="right" valign="top">
@@ -223,7 +223,7 @@ export const foundItemReportedTemplate = (data: {
                     <tr>
                       <td style="padding:16px 20px;">
                         <p style="margin:0;font-size:13px;color:#166534;line-height:1.6;">
-                          <strong>What happens next?</strong> The SAS office will coordinate with the potential owner. If the item remains unclaimed after a certain period, it will be handled according to campus policy.
+                          <strong>What happens next?</strong> The SpotFound office will coordinate with the potential owner. If the item remains unclaimed after a certain period, it will be handled according to campus policy.
                         </p>
                       </td>
                     </tr>
@@ -238,8 +238,8 @@ export const foundItemReportedTemplate = (data: {
                   <table width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">NBSC SAS Lost &amp; Found System</p>
-                        <p style="margin:0;font-size:12px;color:#94a3b8;">Northern Bukidnon State College · Student Affairs Services</p>
+                        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">SpotFound Lost &amp; Found System</p>
+                        <p style="margin:0;font-size:12px;color:#94a3b8;">SpotFound · Lost &amp; Found Services</p>
                       </td>
                       <td align="right">
                         <p style="margin:0;font-size:11px;color:#cbd5e1;">Do not reply to this email</p>
@@ -291,7 +291,7 @@ export const itemClaimedTemplate = (data: {
                   <table width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">NBSC SAS Lost &amp; Found</p>
+                        <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">SpotFound Lost &amp; Found</p>
                         <h1 style="margin:0;font-size:22px;font-weight:700;color:#0f172a;">Your Item Has Been Received</h1>
                       </td>
                       <td align="right" valign="top">
@@ -308,10 +308,10 @@ export const itemClaimedTemplate = (data: {
 
                   <p style="margin:0 0 8px;font-size:16px;font-weight:600;color:#0f172a;">Hello, ${data.claimantName}</p>
                   <p style="margin:0 0 10px;font-size:14px;color:#64748b;line-height:1.7;">
-                    This is an automated confirmation from the NBSC SAS Lost &amp; Found office. Our records indicate that the item listed below has been successfully claimed and received.
+                    This is an automated confirmation from the SpotFound office. Our records indicate that the item listed below has been successfully claimed and received.
                   </p>
                   <p style="margin:0 0 28px;font-size:14px;color:#64748b;line-height:1.7;">
-                    <strong style="color:#0f172a;">Is this you?</strong> If you did receive this item, no further action is needed. If you did <strong>not</strong> receive this item or believe this is an error, please contact the SAS office immediately.
+                    <strong style="color:#0f172a;">Is this you?</strong> If you did receive this item, no further action is needed. If you did <strong>not</strong> receive this item or believe this is an error, please contact SpotFound immediately.
                   </p>
 
                   <!-- DETAIL CARD -->
@@ -353,7 +353,7 @@ export const itemClaimedTemplate = (data: {
                       <td style="padding:18px 24px;">
                         <p style="margin:0 0 6px;font-size:13px;font-weight:700;color:#c2410c;">⚠️ Not you?</p>
                         <p style="margin:0;font-size:13px;color:#9a3412;line-height:1.7;">
-                          If you did <strong>not</strong> claim this item or did not authorize this transaction, please contact the SAS office immediately at your earliest convenience so we can investigate.
+                          If you did <strong>not</strong> claim this item or did not authorize this transaction, please contact SpotFound immediately at your earliest convenience so we can investigate.
                         </p>
                       </td>
                     </tr>
@@ -364,7 +364,7 @@ export const itemClaimedTemplate = (data: {
                     <tr>
                       <td style="padding:14px 20px;">
                         <p style="margin:0;font-size:13px;color:#1e40af;line-height:1.6;">
-                          This email is an automated notification from the NBSC SAS Lost &amp; Found system. <strong>Please do not reply to this email.</strong> For inquiries, visit the SAS office directly during office hours: <strong>Monday – Friday, 8:00 AM – 5:00 PM</strong>.
+                          This email is an automated notification from the SpotFound Lost &amp; Found system. <strong>Please do not reply to this email.</strong> For inquiries, contact SpotFound directly during office hours: <strong>Monday – Friday, 8:00 AM – 5:00 PM</strong>.
                         </p>
                       </td>
                     </tr>
@@ -379,8 +379,8 @@ export const itemClaimedTemplate = (data: {
                   <table width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">NBSC SAS Lost &amp; Found System</p>
-                        <p style="margin:0;font-size:12px;color:#94a3b8;">Northern Bukidnon State College · Student Affairs Services</p>
+                        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">SpotFound Lost &amp; Found System</p>
+                        <p style="margin:0;font-size:12px;color:#94a3b8;">SpotFound · Lost &amp; Found Services</p>
                       </td>
                       <td align="right">
                         <p style="margin:0;font-size:11px;color:#cbd5e1;">Do not reply to this email</p>
@@ -432,7 +432,7 @@ export const smartMatchNotificationTemplate = (data: {
                   <table width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">NBSC SAS Lost &amp; Found</p>
+                        <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">SpotFound Lost &amp; Found</p>
                         <h1 style="margin:0;font-size:22px;font-weight:700;color:#0f172a;">Potential Item Match Found!</h1>
                       </td>
                       <td align="right" valign="top">
@@ -490,7 +490,7 @@ export const smartMatchNotificationTemplate = (data: {
                     <tr>
                       <td style="padding:16px 20px;">
                         <p style="margin:0;font-size:13px;color:#5b21b6;line-height:1.6;">
-                          <strong>Is this your item?</strong> Please visit the SAS office at your earliest convenience to verify and claim your item. Bring your school ID for identification.
+                          <strong>Is this your item?</strong> Please visit SpotFound at your earliest convenience to verify and claim your item. Bring your ID for identification.
                         </p>
                       </td>
                     </tr>
@@ -505,8 +505,8 @@ export const smartMatchNotificationTemplate = (data: {
                   <table width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">NBSC SAS Lost &amp; Found System</p>
-                        <p style="margin:0;font-size:12px;color:#94a3b8;">Northern Bukidnon State College · Student Affairs Services</p>
+                        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">SpotFound Lost &amp; Found System</p>
+                        <p style="margin:0;font-size:12px;color:#94a3b8;">SpotFound · Lost &amp; Found Services</p>
                       </td>
                       <td align="right">
                         <p style="margin:0;font-size:11px;color:#cbd5e1;">Do not reply to this email</p>
@@ -554,7 +554,7 @@ export const reminderEmailTemplate = (data: {
                   <table width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">NBSC SAS Lost &amp; Found</p>
+                        <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">SpotFound Lost &amp; Found</p>
                         <h1 style="margin:0;font-size:22px;font-weight:700;color:#0f172a;">A Quick Reminder!</h1>
                       </td>
                       <td align="right" valign="top">
@@ -571,7 +571,7 @@ export const reminderEmailTemplate = (data: {
 
                   <p style="margin:0 0 8px;font-size:16px;font-weight:600;color:#0f172a;">Hello, ${data.recipientName}</p>
                   <p style="margin:0 0 28px;font-size:14px;color:#64748b;line-height:1.7;">
-                    This is a quick reminder from the NBSC SAS Office. We have several unclaimed items in our Lost & Found inventory. 
+                    This is a quick reminder from SpotFound. We have several unclaimed items in our Lost & Found inventory. 
                     If you've misplaced your IDs, notebooks, umbrellas, or any personal belongings on campus, please check our system to see if your item has been found.
                   </p>
 
@@ -595,8 +595,8 @@ export const reminderEmailTemplate = (data: {
                   <table width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">NBSC SAS Lost &amp; Found System</p>
-                        <p style="margin:0;font-size:12px;color:#94a3b8;">Northern Bukidnon State College · Student Affairs Services</p>
+                        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">SpotFound Lost &amp; Found System</p>
+                        <p style="margin:0;font-size:12px;color:#94a3b8;">SpotFound · Lost &amp; Found Services</p>
                       </td>
                       <td align="right">
                         <p style="margin:0;font-size:11px;color:#cbd5e1;">Do not reply to this email</p>
@@ -645,7 +645,7 @@ export const claimSubmittedTemplate = (data: {
                   <table width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">NBSC SAS Lost &amp; Found</p>
+                        <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">SpotFound Lost &amp; Found</p>
                         <h1 style="margin:0;font-size:22px;font-weight:700;color:#0f172a;">Claim Submitted!</h1>
                       </td>
                     </tr>
@@ -658,7 +658,7 @@ export const claimSubmittedTemplate = (data: {
                 <td style="padding:32px 40px;">
                   <p style="margin:0 0 8px;font-size:16px;font-weight:600;color:#0f172a;">Hello, ${data.claimantName || "Student"}</p>
                   <p style="margin:0 0 24px;font-size:14px;color:#64748b;line-height:1.7;">
-                    Your claim has been successfully submitted to the SAS Office. Our administrators will review it shortly. 
+                    Your claim has been successfully submitted to SpotFound. Our administrators will review it shortly. 
                     You can track the status of your claim at any time using your unique Tracking ID.
                   </p>
 
@@ -679,7 +679,7 @@ export const claimSubmittedTemplate = (data: {
                   <table width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">NBSC SAS Lost &amp; Found System</p>
+                        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">SpotFound Lost &amp; Found System</p>
                       </td>
                     </tr>
                   </table>
@@ -740,7 +740,7 @@ export const weeklyDeletionReportTemplate = (data: {
                     <table width="100%" cellpadding="0" cellspacing="0">
                       <tr>
                         <td>
-                          <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">NBSC SAS Lost &amp; Found</p>
+                          <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">SpotFound Lost &amp; Found</p>
                           <h1 style="margin:0;font-size:22px;font-weight:700;color:#0f172a;">Retention Deletion Report</h1>
                         </td>
                         <td align="right" valign="top">
@@ -796,8 +796,8 @@ export const weeklyDeletionReportTemplate = (data: {
                     <table width="100%" cellpadding="0" cellspacing="0">
                       <tr>
                         <td>
-                          <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">NBSC SAS Lost &amp; Found System</p>
-                          <p style="margin:0;font-size:12px;color:#94a3b8;">Northern Bukidnon State College · Student Affairs Services</p>
+                          <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">SpotFound Lost &amp; Found System</p>
+                          <p style="margin:0;font-size:12px;color:#94a3b8;">SpotFound · Lost &amp; Found Services</p>
                         </td>
                       </tr>
                     </table>
@@ -956,7 +956,7 @@ export const sheetsReconciliationAlertTemplate = (data: {
                     <tr>
                       <td>
                         <p style="margin:0 0 4px;font-size:12px;color:#64748b;">This is an automated weekly reconciliation report. The check compares database records from the last 7 days with Google Sheets logs to detect data integrity failures caused by network issues, offline submissions, or webhook errors.</p>
-                        <p style="margin:8px 0 0;font-size:12px;color:#94a3b8;">Northern Bukidnon State College · Student Affairs Services</p>
+                        <p style="margin:8px 0 0;font-size:12px;color:#94a3b8;">SpotFound · Lost &amp; Found Services</p>
                       </td>
                     </tr>
                   </table>

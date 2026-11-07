@@ -16,6 +16,7 @@ exports.aiSearchController = void 0;
 const response_1 = __importDefault(require("../../global/response"));
 const http_status_codes_1 = require("http-status-codes");
 const aiSearch_service_1 = require("./aiSearch.service");
+const bounty_service_1 = require("../bounty/bounty.service");
 const aiSearch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { query } = req.body;
@@ -28,6 +29,15 @@ const aiSearch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             });
         }
         const result = yield aiSearch_service_1.aiSearchService.aiSearchItems(query);
+        if (req.user) {
+            const userId = req.user.id;
+            try {
+                yield (0, bounty_service_1.incrementBountyProgress)(userId, "USE_AI_SEARCH");
+            }
+            catch (err) {
+                console.error("Failed to increment USE_AI_SEARCH bounty progress:", err);
+            }
+        }
         (0, response_1.default)(res, {
             statusCode: http_status_codes_1.StatusCodes.OK,
             success: true,

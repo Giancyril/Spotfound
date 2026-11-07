@@ -1171,7 +1171,7 @@ export default function StudentDashboard() {
             },
             {
               label: "Report Lost Item",
-              desc: "Help the SAS office locate it",
+              desc: "Help SpotFound locate it",
               href: "/reportLostItem",
               icon: <FaSearch size={15} />,
               iconBg: "bg-cyan-400/10 border-cyan-400/15",

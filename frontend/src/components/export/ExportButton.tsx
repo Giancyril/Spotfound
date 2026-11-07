@@ -78,7 +78,7 @@ export const printAnalyticsReport = (stats: any) => {
   ];
 
   const html = `
-  <html><head><title>NBSC Analytics Report — ${date}</title>
+  <html><head><title>SpotFound Analytics Report — ${date}</title>
   <style>
     *{box-sizing:border-box}
     body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;padding:32px;max-width:960px;margin:0 auto}
@@ -104,8 +104,8 @@ export const printAnalyticsReport = (stats: any) => {
     }
   </style></head>
   <body>
-    <h1>NBSC Lost &amp; Found — Analytics Report</h1>
-    <p class="subtitle">Generated on ${date} &nbsp;·&nbsp; NBSC Student Affairs Services</p>
+    <h1>SpotFound Lost &amp; Found — Analytics Report</h1>
+    <p class="subtitle">Generated on ${date} &nbsp;·&nbsp; SpotFound</p>
 
     <!-- Summary Stats -->
     <div class="stat-grid">

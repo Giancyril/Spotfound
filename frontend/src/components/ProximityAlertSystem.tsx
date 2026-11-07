@@ -364,7 +364,7 @@ export default function ProximityAlertSystem() {
               </label>
               <CustomSimulateDropdown
                 options={[
-                  { id: "Outside Campus", name: "Outside NBSC Campus (No Alert)" },
+                  { id: "Outside Campus", name: "Outside Campus (No Alert)" },
                   ...HOTSPOTS.map((h) => ({ id: h.name, name: `Teleport into ${h.name}` }))
                 ]}
                 value={simulatedZoneName}

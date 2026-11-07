@@ -113,9 +113,11 @@ router.put("/block/user/:id", (0, auth_1.default)(), user_controllers_1.userCont
 router.delete("/delete-user/:id", (0, auth_1.default)(), user_controllers_1.userController.softDeleteUser);
 router.get("/admin/match-notifications", (0, auth_1.default)(), getMatchNotifications_1.getMatchNotifications);
 // ////////////////////////////////////////////////// AI search //////////////////////////////////////////////
-router.post("/ai-search", (0, validate_1.default)(aiSearch_validate_1.aiSearchValidation.aiSearchSchema), aiSearch_controller_1.aiSearchController.aiSearch);
+router.post("/ai-search", (0, auth_1.default)(true), (0, validate_1.default)(aiSearch_validate_1.aiSearchValidation.aiSearchSchema), aiSearch_controller_1.aiSearchController.aiSearch);
 router.post("/ai-recognize", (0, auth_1.default)(true), upload_1.uploadImages.single("image"), ai_controller_1.aiRecognitionController.recognizeImage);
 router.post("/ai-voice-parse", (0, auth_1.default)(true), upload_1.uploadAudio.single("audio"), ai_controller_1.aiRecognitionController.parseVoice);
+router.post("/ai/check-duplicate", (0, auth_1.default)(true), ai_controller_1.aiRecognitionController.checkDuplicate);
+router.post("/ai/compare-photos", (0, auth_1.default)(), ai_controller_1.aiRecognitionController.comparePhotos);
 router.use("/ai-chat", aiChat_routes_1.aiChatRoutes);
 // ── Email / Mailer ──
 router.post("/email/lost-item", (0, auth_1.default)(), emailController_1.sendLostItemEmail);

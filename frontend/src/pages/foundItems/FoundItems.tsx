@@ -72,7 +72,7 @@ const CATEGORY_CONFIG = {
   },
   keys: {
     itemName: 'Keys',
-    description: 'An item has been turned in. For security and to ensure it returns to the rightful owner, specific details regarding the material, design, or brand are withheld. Please visit the SAS office for identification and verification.',
+    description: 'An item has been turned in. For security and to ensure it returns to the rightful owner, specific details regarding the material, design, or brand are withheld. Please visit SpotFound for identification and verification.',
     colors: [],
     conditions: []
   },
@@ -96,61 +96,61 @@ const CATEGORY_CONFIG = {
   },
   device: {
     itemName: 'Device',
-    description: 'An item has been turned in. For security and to ensure it returns to the rightful owner, specific details regarding the material, design, or brand are withheld. Please visit the SAS office for identification and verification.',
+    description: 'An item has been turned in. For security and to ensure it returns to the rightful owner, specific details regarding the material, design, or brand are withheld. Please visit SpotFound for identification and verification.',
     colors: [],
     conditions: []
   },
   id: {
     itemName: 'ID',
-    description: 'An item has been turned in. For security and to ensure it returns to the rightful owner, specific details regarding the material, design, or brand are withheld. Please visit the SAS office for identification and verification.',
+    description: 'An item has been turned in. For security and to ensure it returns to the rightful owner, specific details regarding the material, design, or brand are withheld. Please visit SpotFound for identification and verification.',
     colors: [],
     conditions: []
   },
   documents: {
     itemName: 'Document',
-    description: 'Important personal documents have been recovered. For privacy reasons, the specific nature of these documents is not disclosed here. Please visit the SAS office with a valid ID to retrieve them.',
+    description: 'Important personal documents have been recovered. For privacy reasons, the specific nature of these documents is not disclosed here. Please visit SpotFound with a valid ID to retrieve them.',
     colors: [],
     conditions: []
   },
   'wallets & purses': {
     itemName: 'Wallet/Purse',
-    description: 'A wallet/purse has been turned in. To ensure the security of the owner\'s belongings, specific details such as color, brand, or contents are kept confidential. Please visit the SAS office to identify and claim your property.',
+    description: 'A wallet/purse has been turned in. To ensure the security of the owner\'s belongings, specific details such as color, brand, or contents are kept confidential. Please visit SpotFound to identify and claim your property.',
     colors: [],
     conditions: []
   },
   jewelry: {
     itemName: 'Jewelry',
-    description: 'An item has been turned in. For security and to ensure it returns to the rightful owner, specific details regarding the material, design, or brand are withheld. Please visit the SAS office for identification and verification.',
+    description: 'An item has been turned in. For security and to ensure it returns to the rightful owner, specific details regarding the material, design, or brand are withheld. Please visit SpotFound for identification and verification.',
     colors: [],
     conditions: []
   },
   accessories: {
     itemName: 'Accessory',
-    description: 'An item has been turned in. For security and to ensure it returns to the rightful owner, specific details regarding the material, design, or brand are withheld. Please visit the SAS office for identification and verification.',
+    description: 'An item has been turned in. For security and to ensure it returns to the rightful owner, specific details regarding the material, design, or brand are withheld. Please visit SpotFound for identification and verification.',
     colors: [],
     conditions: []
   },
   'flash drives & storage': {
     itemName: 'Storage Device',
-    description: 'An item has been turned in. For security and to ensure it returns to the rightful owner, specific details regarding the material, design, or brand are withheld. Please visit the SAS office for identification and verification.',
+    description: 'An item has been turned in. For security and to ensure it returns to the rightful owner, specific details regarding the material, design, or brand are withheld. Please visit SpotFound for identification and verification.',
     colors: [],
     conditions: []
   },
   'lunch boxes & food containers': {
     itemName: 'Lunch Box/Container',
-    description: 'A food container or lunch box was found. Please visit the SAS office to identify and claim.',
+    description: 'A food container or lunch box was found. Please visit SpotFound to identify and claim.',
     colors: ['Black', 'Blue', 'Red', 'Green', 'Pink', 'White', 'Clear', 'Other'],
     conditions: ['New', 'Good', 'Used']
   },
   'sport equipment': {
     itemName: 'Sport Equipment',
-    description: 'A piece of sport equipment was found. Please visit the SAS office to identify and claim.',
+    description: 'A piece of sport equipment was found. Please visit SpotFound to identify and claim.',
     colors: ['Black', 'White', 'Blue', 'Red', 'Orange', 'Yellow', 'Other'],
     conditions: ['New', 'Good', 'Used', 'Damaged']
   },
   'eyeglasses & sunglasses': {
     itemName: 'Eyeglasses/Sunglasses',
-    description: 'A pair of eyeglasses or sunglasses was found. Please visit the SAS office to identify and claim.',
+    description: 'A pair of eyeglasses or sunglasses was found. Please visit SpotFound to identify and claim.',
     colors: ['Black', 'Brown', 'Gold', 'Silver', 'Clear', 'Blue', 'Pink', 'Other'],
     conditions: ['Scratches', 'None']
   }
@@ -497,7 +497,7 @@ const QuickClaimModal = ({ item, onClose, onInitiateChat }: { item: any; onClose
       });
       if (res?.data?.success) {
         setSubmitted(true);
-        toast.success("Claim submitted! The SAS office will review and contact you.");
+        toast.success("Claim submitted! SpotFound will review and contact you.");
         setTimeout(onClose, 2000);
       } else {
         toast.error("Failed to submit claim. Please try again.");
@@ -587,7 +587,7 @@ const QuickClaimModal = ({ item, onClose, onInitiateChat }: { item: any; onClose
                 <FaCheckCircle className="text-blue-400" size={24} />
               </div>
               <p className="text-white font-semibold">Claim Submitted!</p>
-              <p className="text-gray-500 text-xs mt-1.5 leading-relaxed max-w-xs mx-auto mb-5">The SAS office will review your proof and contact you via your school email.</p>
+              <p className="text-gray-500 text-xs mt-1.5 leading-relaxed max-w-xs mx-auto mb-5">SpotFound will review your proof and contact you via your school email.</p>
               <button
                 onClick={() => {
                   onClose();
@@ -618,7 +618,7 @@ const QuickClaimModal = ({ item, onClose, onInitiateChat }: { item: any; onClose
                     control={control}
                     rules={{
                       required: "School email is required",
-                      pattern: { value: /^[^\s@]+@nbsc\.edu\.ph$/i, message: "Must be a valid NBSC email" },
+                      pattern: { value: /^[^\s@]+@nbsc\.edu\.ph$/i, message: "Must be a valid institutional email" },
                     }}
                     render={({ field }) => (
                       <input
@@ -664,7 +664,7 @@ const QuickClaimModal = ({ item, onClose, onInitiateChat }: { item: any; onClose
                 {errors.distinguishingFeatures && <p className="text-red-400 text-xs mt-1">{errors.distinguishingFeatures.message as string}</p>}
               </div>
               <div className="bg-blue-500/5 border border-blue-500/15 rounded-xl px-3.5 py-2.5">
-                <p className="text-blue-300/70 text-[11px] leading-relaxed text-justify">Once submitted, the SAS office will verify your proof and contact you via school email before releasing the item.</p>
+                <p className="text-blue-300/70 text-[11px] leading-relaxed text-justify">Once submitted, SpotFound will verify your proof and contact you via email before releasing the item.</p>
               </div>
               <div className="flex gap-2 pt-1">
                 <button type="button" onClick={() => { reset(); setLostDate(""); onClose(); }} className="flex-1 py-2.5 bg-gray-800 hover:bg-gray-700 border border-white/5 text-gray-400 text-xs font-medium rounded-xl transition-colors">Cancel</button>
@@ -1294,7 +1294,7 @@ const FoundItemsPage = () => {
         description: data.description,
         location: data.location,
         date: new Date(addStartDate + "T00:00:00"),
-        claimProcess: "Visit the SAS office with a valid school ID to claim this item.",
+        claimProcess: "Visit SpotFound with a valid school ID to claim this item.",
         reporterName: data.reporterName || "OFFICE",
         schoolEmail: data.schoolEmail || "",
         department: data.department || "",
@@ -1405,7 +1405,7 @@ const FoundItemsPage = () => {
                   <p className="text-blue-400 text-[11px] font-bold uppercase tracking-widest">Found Items</p>
                 </div>
                 <h1 className="text-white text-2xl sm:text-3xl font-bold tracking-tight">Items Found on Campus</h1>
-                <p className="text-gray-500 text-sm mt-1 max-w-lg">Browse items recovered and logged by the SAS office. If you recognize something, submit a claim to verify ownership.</p>
+                <p className="text-gray-500 text-sm mt-1 max-w-lg">Browse items recovered and logged by SpotFound. If you recognize something, submit a claim to verify ownership.</p>
               </div>
               <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap shrink-0">
 
@@ -1725,7 +1725,7 @@ const FoundItemsPage = () => {
                       control={addControl}
                       rules={{
                         required: "School email is required",
-                        pattern: { value: /^[^\s@]+@nbsc\.edu\.ph$/i, message: "Must be a valid NBSC email" },
+                        pattern: { value: /^[^\s@]+@nbsc\.edu\.ph$/i, message: "Must be a valid institutional email" },
                       }}
                       render={({ field }) => (
                         <input
@@ -1961,7 +1961,7 @@ const FoundItemsPage = () => {
                   </div>
                   <div>
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Claim Instructions</p>
-                    <p className="text-blue-300/70 text-[11px] leading-relaxed">Visit the SAS office with a valid school ID to claim this item.</p>
+                    <p className="text-blue-300/70 text-[11px] leading-relaxed">Visit SpotFound with a valid school ID to claim this item.</p>
                   </div>
                 </div>
 

@@ -189,7 +189,7 @@ const PostModal = ({ onClose }: { onClose: () => void }) => {
             {imageError && <p className="text-red-400 text-xs mt-1">{imageError}</p>}
           </div>
           <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl px-3.5 py-2.5">
-            <p className="text-amber-300/70 text-[11px] leading-relaxed"> Your post will be visible to the community. The SAS office may contact you if a match is found.</p>
+            <p className="text-amber-300/70 text-[11px] leading-relaxed"> Your post will be visible to the community. SpotFound may contact you if a match is found.</p>
           </div>
           <div className="flex gap-2 pt-1">
             <button type="button" onClick={onClose} className="flex-1 py-2.5 bg-gray-800 hover:bg-gray-700 border border-white/5 text-gray-400 text-xs font-medium rounded-xl transition-colors">Cancel</button>

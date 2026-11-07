@@ -107,7 +107,7 @@ const ItemLifecycleTimeline = ({ foundItem, currentUserId }: Props) => {
       label:    "Item Reported",
       sublabel: `Found at ${foundItem.location ?? "unknown location"}`,
       time:     reportedAt,
-      actor:    foundItem.reporterName ?? foundItem.user?.username ?? "SAS Office",
+      actor:    foundItem.reporterName ?? foundItem.user?.username ?? "SpotFound Office",
       done:     true,
       active:   !claimedAt,
     },
@@ -128,10 +128,10 @@ const ItemLifecycleTimeline = ({ foundItem, currentUserId }: Props) => {
       stage:    "under_review",
       label:    "Under Review",
       sublabel: claim
-        ? "SAS office is verifying proof of ownership"
+        ? "SpotFound is verifying proof of ownership"
         : "No claim to review yet",
       time:     claimedAt,
-      actor:    "SAS Admin",
+      actor:    "SpotFound Admin",
       done:     !!claimedAt && (!!approvedAt || !!rejectedAt),
       active:   !!claimedAt && !approvedAt && !rejectedAt,
     },

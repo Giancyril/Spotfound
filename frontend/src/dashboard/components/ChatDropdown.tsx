@@ -296,7 +296,7 @@ const ChatDropdown = () => {
                   <div className="px-3 py-1.5 border-t border-white/5 bg-black/20 overflow-x-auto flex items-center gap-1.5 custom-scrollbar whitespace-nowrap shrink-0">
                     <span className="text-[8px] text-gray-500 font-bold uppercase tracking-wider shrink-0">Meetup:</span>
                     {[
-                      { label: " SAS Lobby", text: "Can we meet at the SAS Office Lobby to coordinate the handoff?" },
+                      { label: " SpotFound Lobby", text: "Can we meet at the SpotFound Office Lobby to coordinate the handoff?" },
                       { label: " Library Lobby", text: "I am near the Campus Library Lobby. Can we meet there?" },
                     ].map((tpl) => (
                       <button key={tpl.label} onClick={() => socket?.emit("send-message", { chatRoomId: activeRoomId, content: tpl.text })}
@@ -311,7 +311,7 @@ const ChatDropdown = () => {
                         <span className="text-[8px] text-blue-400 font-bold uppercase tracking-wider shrink-0">Admin:</span>
                         {[
                           { label: "Verify", text: "Hello! To verify ownership, could you please provide more details about this item?" },
-                          { label: "Ready", text: "Good news! Your item is now ready for pickup at the SAS Office. Please bring your school ID." },
+                          { label: "Ready", text: "Good news! Your item is now ready for pickup at SpotFound. Please bring your school ID." },
                         ].map((tpl) => (
                           <button key={tpl.label} onClick={() => socket?.emit("send-message", { chatRoomId: activeRoomId, content: tpl.text })}
                             className="px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[8px] font-bold hover:bg-blue-500 hover:text-white transition-all">

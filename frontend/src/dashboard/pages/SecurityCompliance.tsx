@@ -497,7 +497,7 @@ const DataPrivacyTab = () => {
   const handleExport = async () => {
     const res: any = await triggerExport(undefined);
     if (res?.data?.success) {
-      downloadCSV(res.data.data, "nbsc-user-data-export");
+      downloadCSV(res.data.data, "spotfound-user-data-export");
       toast.success("User data exported as CSV");
     } else {
       toast.error("Export failed");
@@ -813,7 +813,7 @@ const RetentionPolicyTab = () => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `nbsc-retention-deletion-report-${new Date().toISOString().split("T")[0]}.csv`;
+      a.download = `spotfound-retention-deletion-report-${new Date().toISOString().split("T")[0]}.csv`;
       a.click();
       URL.revokeObjectURL(url);
       toast.success("CSV report downloaded successfully");
@@ -1261,13 +1261,12 @@ const PointAbuseTab = () => {
                   {/* Multiplier badge */}
                   <div className="col-span-2 text-right">
                     {user.multiplier != null ? (
-                      <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-black border ${
-                        user.multiplier >= 5
-                          ? "bg-rose-500/15 border-rose-500/30 text-rose-400"
-                          : user.multiplier >= 3
+                      <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-black border ${user.multiplier >= 5
+                        ? "bg-rose-500/15 border-rose-500/30 text-rose-400"
+                        : user.multiplier >= 3
                           ? "bg-orange-500/15 border-orange-500/30 text-orange-400"
                           : "bg-amber-500/15 border-amber-500/30 text-amber-400"
-                      }`}>
+                        }`}>
                         {Number(user.multiplier).toFixed(1)}×
                       </span>
                     ) : (

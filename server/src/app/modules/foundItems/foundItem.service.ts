@@ -19,7 +19,7 @@ const createFoundItem = async (
     categoryId: data.categoryId,
     description: data.description,
     date: data.date,
-    claimProcess: data.claimProcess || "Visit the SAS office with school ID to claim this item.",
+    claimProcess: data.claimProcess || "Visit SpotFound with school ID to claim this item.",
     img: imgUrl,
     foundItemName: data.foundItemName,
     location: data.location,

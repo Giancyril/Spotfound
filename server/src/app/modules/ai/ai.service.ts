@@ -93,7 +93,7 @@ const recognizeImage = async (imageSource: string | Buffer, mimeType = "image/jp
 
     // 4. Construct the prompt
     const prompt = `
-    You are an AI assistant for a campus Lost and Found system called "Lost & Found NBSC".
+    You are an AI assistant for a campus Lost and Found system called "SpotFound".
     Analyze the uploaded image and provide metadata for reporting this item.
     
     Instructions:
@@ -177,7 +177,7 @@ const analyzeUrgency = async (name: string, description: string) => {
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     const prompt = `
-    You are an AI moderator for a campus Lost and Found system called "Lost & Found NBSC".
+    You are an AI moderator for a campus Lost and Found system called "SpotFound".
     Analyze the following report and determine its urgency/priority.
     
     Item Name: "${name}"
@@ -237,7 +237,7 @@ const analyzeClaimFraud = async (claimantFeatures: string, itemDescription: stri
     const genAI = getGenAI();
 
     const prompt = `
-    You are a Fraud Detection AI for a campus Lost and Found system called "Lost & Found NBSC".
+    You are a Fraud Detection AI for a campus Lost and Found system called "SpotFound".
     A student is trying to claim a found item. They must provide "distinguishing features" to prove ownership.
     Compare their provided features against the actual item details recorded by the finder/admin.
     
@@ -321,7 +321,7 @@ const parseVoice = async (audioBuffer: Buffer, mimeType = "audio/webm") => {
     }
 
     const prompt = `
-    You are an exceptionally smart AI speech assistant for a campus Lost and Found system called "Lost & Found NBSC".
+    You are an exceptionally smart AI speech assistant for a campus Lost and Found system called "SpotFound".
     Listen to the audio recording carefully and transcribe it, then extract all details to report a lost or found item.
     
     Instructions:
@@ -381,15 +381,15 @@ const parseVoice = async (audioBuffer: Buffer, mimeType = "audio/webm") => {
     }
 
     Example 3:
-    - Voice Input: "Hey, I found a black jacket on the bench outside the SAS Office. It's quite dusty and looks like a medium size."
+    - Voice Input: "Hey, I found a black jacket on the bench outside the SpotFound Office. It's quite dusty and looks like a medium size."
     - Expected Output:
     {
-      "transcription": "Hey, I found a black jacket on the bench outside the SAS Office. It's quite dusty and looks like a medium size.",
+      "transcription": "Hey, I found a black jacket on the bench outside the SpotFound Office. It's quite dusty and looks like a medium size.",
       "itemName": "Black Medium Jacket",
       "categoryId": "clothing-uuid",
       "categoryName": "Clothing",
-      "location": "SAS Office (Bench outside)",
-      "description": "A medium-sized black jacket found on the bench outside the SAS Office. The jacket appears dusty.",
+      "location": "SpotFound Office (Bench outside)",
+      "description": "A medium-sized black jacket found on the bench outside the SpotFound Office. The jacket appears dusty.",
       "color": "Black",
       "condition": "Used",
       "confidence": 0.96
@@ -448,7 +448,7 @@ const writeSpotlightStory = async (bulletPoints: string) => {
     });
 
     const prompt = `
-    You are an exceptionally engaging, empathetic, and professional AI Story Writer for a campus Lost and Found platform called "Lost & Found NBSC".
+    You are an exceptionally engaging, empathetic, and professional AI Story Writer for a campus Lost and Found platform called "SpotFound".
     Your task is to write a heartwarming, beautifully engaging, and professional spotlight story/article based on the short bullet points or notes provided by the administrator.
     This story is to recognize and celebrate the outstanding civic values and integrity of the students involved (such as returning a lost item or showing honesty).
 
@@ -564,7 +564,7 @@ const findDuplicates = async (name: string, description: string, categoryId: str
 
     const genAI = getGenAI();
     const prompt = `
-    You are a Duplicate Detection AI for a campus Lost and Found system called "Lost & Found NBSC".
+    You are a Duplicate Detection AI for a campus Lost and Found system called "SpotFound".
     Identify if a newly reported item is a duplicate of any recently reported items.
 
     New Item to Report:
@@ -668,7 +668,7 @@ const comparePhotos = async (
       // Two-image visual comparison
       const claimImg = await fetchImageAsBase64(claimImageUrl);
       promptParts.push(
-        `You are an AI assistant for a campus Lost and Found system called "Lost & Found NBSC".
+        `You are an AI assistant for a campus Lost and Found system called "SpotFound".
 You are given TWO item photos submitted by two different parties.
 Image 1: The FOUND ITEM photo (uploaded by the finder).
 Image 2: The CLAIMANT'S photo (uploaded by the person claiming ownership).
@@ -699,7 +699,7 @@ Rules:
     } else {
       // Single image + text description comparison
       promptParts.push(
-        `You are an AI assistant for a campus Lost and Found system called "Lost & Found NBSC".
+        `You are an AI assistant for a campus Lost and Found system called "SpotFound".
 You are given the FOUND ITEM photo and a CLAIMANT'S TEXT DESCRIPTION of their lost item.
 Image 1: The FOUND ITEM photo (uploaded by the finder).
 

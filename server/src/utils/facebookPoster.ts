@@ -9,7 +9,7 @@ export const sendFacebookNotification = async (item: any) => {
   }
 
   try {
-    const message = `🔍 New Item Found!\n\nItem: ${item.foundItemName}\nLocation Found: ${item.location}\nDate Found: ${new Date(item.date).toLocaleDateString()}\nDescription: ${item.description || "No description provided."}\nCategory: ${item.category?.name || "Uncategorized"}\n\nPlease visit the NBSC SAS Lost & Found portal to claim your item.`;
+    const message = `🔍 New Item Found!\n\nItem: ${item.foundItemName}\nLocation Found: ${item.location}\nDate Found: ${new Date(item.date).toLocaleDateString()}\nDescription: ${item.description || "No description provided."}\nCategory: ${item.category?.name || "Uncategorized"}\n\nPlease visit SpotFound to claim your item.`;
 
     let imageUrl = item.img;
     if (!imageUrl && item.images && item.images.length > 0) {

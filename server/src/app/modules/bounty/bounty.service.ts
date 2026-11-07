@@ -3,8 +3,8 @@ import prisma from "../../config/prisma";
 import { pushService } from "../push/push.service";
 
 const BOUNTY_TEMPLATES = [
-  { title: "Lost & Found Hero", description: "Report 2 found items to the SAS office", targetCount: 2, actionType: "REPORT_FOUND_ITEM", xpReward: 300, icon: "🎒" },
-  { title: "Sharp Eyes", description: "Report 5 found items to the SAS office", targetCount: 5, actionType: "REPORT_FOUND_ITEM", xpReward: 1000, icon: "🦅" },
+  { title: "Lost & Found Hero", description: "Report 2 found items to SpotFound", targetCount: 2, actionType: "REPORT_FOUND_ITEM", xpReward: 300, icon: "🎒" },
+  { title: "Sharp Eyes", description: "Report 5 found items to SpotFound", targetCount: 5, actionType: "REPORT_FOUND_ITEM", xpReward: 1000, icon: "🦅" },
   { title: "Detective Mode", description: "Use AI Search to look for an item 5 times", targetCount: 5, actionType: "USE_AI_SEARCH", xpReward: 150, icon: "🤖" },
   { title: "The Matchmaker", description: "Get a verified claim approved", targetCount: 1, actionType: "CLAIM_APPROVED", xpReward: 500, icon: "🤝" },
   { title: "Active Explorer", description: "View the indoor campus map 3 times", targetCount: 3, actionType: "VIEW_MAP", xpReward: 100, icon: "🗺️" },

@@ -288,13 +288,13 @@ export const maybeAwardLuckyFind = async (userId: string) => {
 // ──────────────────────────────────────────────────────────────────────────────
 export const ACHIEVEMENTS = {
   // 🟦 Found Item Badges (Turned in to Office)
-  FIRST_FOUND_ITEM: { key: "FIRST_FOUND_ITEM", name: "Press F to Pay Respects", description: "Turned in your first found item to the SAS office", hint: "Turn in any item you find on campus at the SAS office", icon: "🏹", tier: "BRONZE", category: "found", xp: 25 },
+  FIRST_FOUND_ITEM: { key: "FIRST_FOUND_ITEM", name: "Press F to Pay Respects", description: "Turned in your first found item to SpotFound", hint: "Turn in any item you find on campus to SpotFound", icon: "🏹", tier: "BRONZE", category: "found", xp: 25 },
   FOUND_3_ITEMS: { key: "FOUND_3_ITEMS", name: "Eagle Vision", description: "Turned in 3 found items in a single week", hint: "Turn in 3 found items within the same week", icon: "🦅", tier: "SILVER", category: "found", xp: 100 },
-  FOUND_5_ITEMS: { key: "FOUND_5_ITEMS", name: "Good Samaritan", description: "Turned in 5 found items to the SAS office", hint: "Keep turning in found items — reach 5 total", icon: "🤝", tier: "SILVER", category: "found", xp: 150 },
-  FOUND_10_ITEMS: { key: "FOUND_10_ITEMS", name: "Campus Witcher", description: "Turned in 10 found items to the SAS office", hint: "Turn in 10 found items to the SAS office", icon: "🛡️", tier: "GOLD", category: "found", xp: 250 },
-  FOUND_25_ITEMS: { key: "FOUND_25_ITEMS", name: "Legendary Loot Hunter", description: "Turned in 25 found items to the SAS archives", hint: "Turn in 25 found items in total", icon: "💎", tier: "PLATINUM", category: "found", xp: 500 },
+  FOUND_5_ITEMS: { key: "FOUND_5_ITEMS", name: "Good Samaritan", description: "Turned in 5 found items to SpotFound", hint: "Keep turning in found items — reach 5 total", icon: "🤝", tier: "SILVER", category: "found", xp: 150 },
+  FOUND_10_ITEMS: { key: "FOUND_10_ITEMS", name: "Campus Witcher", description: "Turned in 10 found items to SpotFound", hint: "Turn in 10 found items to SpotFound", icon: "🛡️", tier: "GOLD", category: "found", xp: 250 },
+  FOUND_25_ITEMS: { key: "FOUND_25_ITEMS", name: "Legendary Loot Hunter", description: "Turned in 25 found items to SpotFound archives", hint: "Turn in 25 found items in total", icon: "💎", tier: "PLATINUM", category: "found", xp: 500 },
   FOUND_50_ITEMS: { key: "FOUND_50_ITEMS", name: "Hero of Time", description: "Turned in 50 items and saved the day!", hint: "Turn in 50 found items in total", icon: "👑", tier: "LEGEND", category: "found", xp: 1000 },
-  FOUND_100: { key: "FOUND_100", name: "God of Found Items", description: "Turned in 100 items to the SAS office", hint: "Turn in 100 found items — true dedication!", icon: "🔱", tier: "LEGEND", category: "found", xp: 5000 },
+  FOUND_100: { key: "FOUND_100", name: "God of Found Items", description: "Turned in 100 items to SpotFound", hint: "Turn in 100 found items — true dedication!", icon: "🔱", tier: "LEGEND", category: "found", xp: 5000 },
   SPEED_FINDER: { key: "SPEED_FINDER", name: "Sanic Speed", description: "Turn in an item within 1hr of it being reported lost", hint: "Report a found item within 1 hour of a matching lost report", icon: "⚡", tier: "SILVER", category: "found", xp: 100 },
   CATEGORY_MASTER: { key: "CATEGORY_MASTER", name: "Class Master", description: "Reported found items across 5 different categories", hint: "Turn in found items from at least 5 different item categories", icon: "📂", tier: "GOLD", category: "found", xp: 250 },
   SCAVENGER_HUNT: { key: "SCAVENGER_HUNT", name: "Scavenger King", description: "Reported found items across 10 different categories", hint: "Turn in found items from 10 different item categories", icon: "🎒", tier: "PLATINUM", category: "found", xp: 500 },
@@ -315,10 +315,10 @@ export const ACHIEVEMENTS = {
 
   // 🟩 Claim Badges
   FIRST_CLAIM: { key: "FIRST_CLAIM", name: "New Recruit", description: "Submit your first claim for a found item", hint: "Click 'Claim' on any found item you believe is yours", icon: "🙋", tier: "BRONZE", category: "claim", xp: 25 },
-  FIRST_CLAIM_APPROVED: { key: "FIRST_CLAIM_APPROVED", name: "Verified Owner", description: "Have your first claim approved by SAS", hint: "Submit a claim and have it approved by the SAS office", icon: "📜", tier: "SILVER", category: "claim", xp: 100 },
-  CLAIMS_5_APPROVED: { key: "CLAIMS_5_APPROVED", name: "Empire Builder", description: "Have 5 claims approved", hint: "Have 5 total claims approved by the SAS office", icon: "✅", tier: "GOLD", category: "claim", xp: 250 },
-  CLAIMS_10_APPROVED: { key: "CLAIMS_10_APPROVED", name: "Prestige Master", description: "Have 10 claims approved", hint: "Have 10 total claims approved by the SAS office", icon: "🌟", tier: "PLATINUM", category: "claim", xp: 500 },
-  CLAIM_MASTER: { key: "CLAIM_MASTER", name: "Master of Claims", description: "Have 20 approved claims", hint: "Have 20 total claims approved by the SAS office", icon: "👑", tier: "LEGEND", category: "claim", xp: 2000 },
+  FIRST_CLAIM_APPROVED: { key: "FIRST_CLAIM_APPROVED", name: "Verified Owner", description: "Have your first claim approved by SpotFound", hint: "Submit a claim and have it approved by SpotFound", icon: "📜", tier: "SILVER", category: "claim", xp: 100 },
+  CLAIMS_5_APPROVED: { key: "CLAIMS_5_APPROVED", name: "Empire Builder", description: "Have 5 claims approved", hint: "Have 5 total claims approved by SpotFound", icon: "✅", tier: "GOLD", category: "claim", xp: 250 },
+  CLAIMS_10_APPROVED: { key: "CLAIMS_10_APPROVED", name: "Prestige Master", description: "Have 10 claims approved", hint: "Have 10 total claims approved by SpotFound", icon: "🌟", tier: "PLATINUM", category: "claim", xp: 500 },
+  CLAIM_MASTER: { key: "CLAIM_MASTER", name: "Master of Claims", description: "Have 20 approved claims", hint: "Have 20 total claims approved by SpotFound", icon: "👑", tier: "LEGEND", category: "claim", xp: 2000 },
   CLEAN_RECORD: { key: "CLEAN_RECORD", name: "Flawless Victory", description: "0 rejected claims after 5 submissions", hint: "Submit 5 claims with none of them being rejected", icon: "🏆", tier: "GOLD", category: "claim", xp: 300 },
   NO_QUESTIONS_ASKED: { key: "NO_QUESTIONS_ASKED", name: "The Negotiator", description: "Have a claim approved with 100% accuracy score", hint: "Submit a highly detailed claim that gets approved perfectly", icon: "🤝", tier: "GOLD", category: "claim", xp: 250 },
   PROOF_PROVIDER: { key: "PROOF_PROVIDER", name: "Detective Mind", description: "Submit high-detail features in a claim", hint: "Provide detailed item descriptions when submitting a claim", icon: "📑", tier: "SILVER", category: "claim", xp: 75 },

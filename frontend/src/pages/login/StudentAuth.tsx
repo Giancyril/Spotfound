@@ -186,12 +186,12 @@ const StudentAuth: React.FC = () => {
         <div className="flex flex-col items-center">
           <div className="space-y-1 mb-4">
             <h1 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-              SAS Lost & <span className="text-blue-400/90">Found</span>
+              Spot<span className="text-blue-400/90">Found</span>
             </h1>
             <div className="flex items-center justify-center gap-3">
               <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-white/20" />
               <span className="text-[10px] font-bold text-blue-300/60 tracking-[0.2em] uppercase">
-                Student Affairs & Services
+                Lost &amp; Found Portal
               </span>
               <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-white/20" />
             </div>
@@ -386,7 +386,7 @@ const StudentAuth: React.FC = () => {
       </div>
 
       <div className={`mt-6 transition-all duration-1000 ${isMounted ? 'opacity-100' : 'opacity-0'}`}>
-        <p className="text-gray-700 text-[10px]">NBSC Student Affairs System · Lost & Found</p>
+        <p className="text-gray-700 text-[10px]">SpotFound · Lost & Found System</p>
       </div>
     </div>
   );

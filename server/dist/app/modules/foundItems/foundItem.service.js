@@ -27,7 +27,7 @@ const createFoundItem = (data, userId) => __awaiter(void 0, void 0, void 0, func
         categoryId: data.categoryId,
         description: data.description,
         date: data.date,
-        claimProcess: data.claimProcess || "Visit the SAS office with school ID to claim this item.",
+        claimProcess: data.claimProcess || "Visit SpotFound with school ID to claim this item.",
         img: imgUrl,
         foundItemName: data.foundItemName,
         location: data.location,
@@ -161,7 +161,19 @@ const getMyFoundItem = (user) => __awaiter(void 0, void 0, void 0, function* () 
     return prisma_1.default.foundItem.findMany({
         where: whereConditions,
         orderBy: { createdAt: "desc" },
-        include: { user: true, category: true },
+        include: {
+            user: true,
+            category: true,
+            claim: {
+                where: { isDeleted: false },
+                include: {
+                    auditLogs: {
+                        orderBy: { createdAt: "asc" }
+                    }
+                }
+            },
+            matchNotifications: true,
+        },
     });
 });
 const editMyFoundItem = (data) => __awaiter(void 0, void 0, void 0, function* () {

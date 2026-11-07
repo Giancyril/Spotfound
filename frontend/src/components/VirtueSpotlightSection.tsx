@@ -336,7 +336,7 @@ const SpotlightModal = ({
             fontSize: 10, fontWeight: 700, letterSpacing: "0.12em",
             textTransform: "uppercase", color: "#378ADD",
           }}>
-            SASDD post
+            SpotFound post
           </span>
           <CloseBtn />
         </div>
@@ -383,7 +383,7 @@ const SpotlightModal = ({
                 fontSize: 10, fontWeight: 700, letterSpacing: "0.12em",
                 textTransform: "uppercase", color: "#378ADD",
               }}>
-                SASDD post
+                SpotFound post
               </span>
               <CloseBtn />
             </div>
@@ -513,14 +513,14 @@ const VirtueSpotlightSection: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full w-fit mb-4">
             <span className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
             <span className="text-blue-400 text-[10px] sm:text-xs font-bold uppercase tracking-widest">
-              SASDD Initiative
+              SpotFound Initiative
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-2">
-            SASDD <span className="text-blue-400">Bulletin Board</span>
+            SpotFound <span className="text-blue-400">Bulletin Board</span>
           </h2>
           <p className="text-gray-400 text-sm max-w-lg leading-relaxed">
-            Stay updated with the latest announcements, reminders, and student recognitions from the Student Services & Affairs and Development Division.
+            Stay updated with the latest announcements, reminders, and recognitions from the SpotFound community.
           </p>
         </div>
 

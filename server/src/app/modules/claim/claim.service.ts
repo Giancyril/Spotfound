@@ -112,8 +112,8 @@ const createClaim = async (
       trackingId: result.id,
     });
     sendEmail({
-      fromName: process.env.SMTP_FROM_NAME || "NBSC SAS Lost & Found",
-      fromEmail: process.env.SMTP_FROM_EMAIL || "noreply@nbsc.edu.ph",
+      fromName: process.env.SMTP_FROM_NAME || "SpotFound Lost & Found",
+      fromEmail: process.env.SMTP_FROM_EMAIL || "noreply@spotfound.com",
       toEmail: result.schoolEmail,
       subject: template.subject,
       html: template.html,

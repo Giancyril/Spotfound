@@ -300,7 +300,7 @@ const Dashboard = () => {
           <div>
             <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight">Good to see you!</h2>
             <p className="text-gray-400 text-xs sm:text-sm mt-1">
-              NBSC SAS · Lost & Found System
+              SpotFound · Lost & Found System
             </p>
           </div>
           <div className="flex gap-2">

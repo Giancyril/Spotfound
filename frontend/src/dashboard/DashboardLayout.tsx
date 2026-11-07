@@ -420,7 +420,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         <div className="flex flex-col items-center gap-4">
           <Spinner size="xl" />
           <p className="text-sm text-gray-400 animate-pulse tracking-widest uppercase">
-            Authenticating with SAS Portal...
+            Authenticating with SpotFound Portal...
           </p>
         </div>
       </div>
@@ -482,12 +482,12 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             <div className="flex items-center gap-2.5">
               <img
                 src="/sas lost and found logo.png"
-                alt="SAS Lost and Found Logo"
+                alt="SpotFound Logo"
                 className="w-8 h-8 object-contain"
                 onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
               />
               <div className="leading-tight">
-                <p className="text-white text-sm font-semibold tracking-widest">NBSC SAS</p>
+                <p className="text-white text-sm font-semibold tracking-widest">SPOTFOUND</p>
                 <p className="text-gray-500 text-[10px] uppercase tracking-widest">Lost & Found</p>
               </div>
             </div>
@@ -495,7 +495,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           {sidebarCollapsed && (
             <img
               src="/sas lost and found logo.png"
-              alt="SAS Lost and Found Logo"
+              alt="SpotFound Logo"
               className="w-8 h-8 object-contain"
               onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
             />

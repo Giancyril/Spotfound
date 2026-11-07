@@ -116,8 +116,8 @@ const createClaim = (item, user) => __awaiter(void 0, void 0, void 0, function* 
             trackingId: result.id,
         });
         (0, mailer_1.sendEmail)({
-            fromName: process.env.SMTP_FROM_NAME || "NBSC SAS Lost & Found",
-            fromEmail: process.env.SMTP_FROM_EMAIL || "noreply@nbsc.edu.ph",
+            fromName: process.env.SMTP_FROM_NAME || "SpotFound Lost & Found",
+            fromEmail: process.env.SMTP_FROM_EMAIL || "noreply@spotfound.com",
             toEmail: result.schoolEmail,
             subject: template.subject,
             html: template.html,

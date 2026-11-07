@@ -136,9 +136,9 @@ function LifecycleModal({ foundItem, onClose }: { foundItem: any; onClose: () =>
   const returnedAt = foundItem?.isClaimed && approvedAt ? approvedAt : null;
 
   const stages = [
-    { id: "reported", stage: "reported" as const, label: "Item Reported", sublabel: `Found at ${foundItem?.location ?? "—"}`, time: reportedAt, actor: foundItem?.user?.username ?? "SAS Office", done: true, active: !claimedAt },
+    { id: "reported", stage: "reported" as const, label: "Item Reported", sublabel: `Found at ${foundItem?.location ?? "—"}`, time: reportedAt, actor: foundItem?.user?.username ?? "SpotFound Office", done: true, active: !claimedAt },
     { id: "claimed", stage: "claimed" as const, label: "Claim Submitted", sublabel: claim ? `By ${claim.claimantName ?? "Anonymous"}` : "No claim yet", time: claimedAt, actor: claim?.claimantName ?? "—", done: !!claimedAt, active: !!claimedAt && !approvedAt && !rejectedAt },
-    { id: "under_review", stage: "under_review" as const, label: "Under Review", sublabel: claim ? "SAS office is verifying ownership" : "Awaiting claim submission", time: claimedAt, actor: "SAS Admin", done: !!claimedAt && (!!approvedAt || !!rejectedAt), active: !!claimedAt && !approvedAt && !rejectedAt },
+    { id: "under_review", stage: "under_review" as const, label: "Under Review", sublabel: claim ? "SpotFound is verifying ownership" : "Awaiting claim submission", time: claimedAt, actor: "SpotFound Admin", done: !!claimedAt && (!!approvedAt || !!rejectedAt), active: !!claimedAt && !approvedAt && !rejectedAt },
     ...(rejectedAt ? [
       { id: "rejected", stage: "rejected" as const, label: "Claim Rejected", sublabel: `Rejected by ${rejectedLog?.performedBy ?? "Admin"}`, time: rejectedAt, actor: rejectedLog?.performedBy ?? "Admin", done: true, active: true },
     ] : [
@@ -259,7 +259,7 @@ function LifecycleModal({ foundItem, onClose }: { foundItem: any; onClose: () =>
         </div>
         <div className="px-5 py-3 border-t border-white/5 shrink-0 flex items-center gap-2">
           <FaClock size={10} className="text-gray-700 shrink-0" />
-          <p className="text-gray-700 text-[10px]">Timeline updates automatically as the claim is processed by SAS Admin.</p>
+          <p className="text-gray-700 text-[10px]">Timeline updates automatically as the claim is processed by SpotFound Admin.</p>
         </div>
       </div>
     </div>
@@ -388,7 +388,7 @@ const SingleFoundItem = () => {
           toast.success("Claim processed and marked as approved!");
           refetch();
         } else {
-          toast.success("Your claim has been submitted. Please visit the SAS office with a valid ID for verification.");
+          toast.success("Your claim has been submitted. Please visit SpotFound with a valid ID for verification.");
         }
         handleCloseClaimModal();
       } else {
@@ -644,7 +644,7 @@ const SingleFoundItem = () => {
                     <div>
                       <p className="text-gray-400 text-[10px] font-black uppercase tracking-widest">Is this yours?</p>
                       <p className="text-gray-500 text-[10px] leading-relaxed">
-                        Submit a claim the SAS office will verify before release.
+                        Submit a claim the SpotFound team will verify before release.
                       </p>
                     </div>
                   </div>
@@ -806,7 +806,7 @@ const SingleFoundItem = () => {
                       type="email"
                       {...register("schoolEmail", {
                         required: "School email is required",
-                        pattern: { value: /^[^\s@]+@nbsc\.edu\.ph$/i, message: "Must be a valid NBSC email" },
+                        pattern: { value: /^[^\s@]+@nbsc\.edu\.ph$/i, message: "Must be a valid institutional email" },
                       })}
                       placeholder=" "
                       className="w-full pl-9 pr-4 py-2.5 bg-gray-800 border border-white/10 rounded-xl text-white text-sm placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
@@ -850,7 +850,7 @@ const SingleFoundItem = () => {
                 {/* Info note */}
                 <div className="bg-blue-500/5 border border-blue-500/15 rounded-xl px-3.5 py-2.5">
                   <p className="text-blue-300/70 text-[11px] leading-relaxed text-justify">
-                    Once submitted, the SAS office will verify your proof and contact you via school email before releasing the item.
+                    Once submitted, SpotFound will verify your proof and contact you via email before releasing the item.
                   </p>
                 </div>
                 <br />

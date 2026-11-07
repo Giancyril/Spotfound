@@ -395,16 +395,16 @@ export default function StudentLayout({ children }: StudentLayoutProps) {
         ${collapsed ? "justify-center" : "justify-between"}`}>
         {!collapsed && (
           <div className="flex items-center gap-2.5 min-w-0">
-            <img src="/sas lost and found logo.png" alt="logo" className="w-8 h-8 object-contain shrink-0"
+            <img src="/sas lost and found logo.png" alt="SpotFound logo" className="w-8 h-8 object-contain shrink-0"
               onError={e => { (e.target as HTMLImageElement).style.display = "none"; }} />
             <div className="leading-tight min-w-0">
-              <p className="text-white text-sm font-semibold tracking-widest truncate">NBSC SAS</p>
+              <p className="text-white text-sm font-semibold tracking-widest truncate">SPOTFOUND</p>
               <p className="text-gray-500 text-[10px] uppercase tracking-widest truncate">Lost & Found</p>
             </div>
           </div>
         )}
         {collapsed && (
-          <img src="/sas lost and found logo.png" alt="logo" className="w-8 h-8 object-contain"
+          <img src="/sas lost and found logo.png" alt="SpotFound logo" className="w-8 h-8 object-contain"
             onError={e => { (e.target as HTMLImageElement).style.display = "none"; }} />
         )}
         <button onClick={() => setCollapsed(c => !c)}
@@ -514,7 +514,7 @@ export default function StudentLayout({ children }: StudentLayoutProps) {
 
         {/* ── Footer bar ── */}
         <footer className="shrink-0 px-5 py-3 border-t border-white/[0.04] flex items-center justify-between">
-          <p className="text-gray-700 text-[10px] font-medium">Student Affairs & Services · Lost and Found</p>
+          <p className="text-gray-700 text-[10px] font-medium">SpotFound · Lost and Found</p>
           <p className="text-gray-700 text-[10px]">© {new Date().getFullYear()}</p>
         </footer>
       </div>

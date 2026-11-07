@@ -808,10 +808,10 @@ const ChatPage = () => {
             <div className="px-3 sm:px-4 py-2 border-t border-white/5 bg-gray-950/20 overflow-x-auto flex items-center gap-2 custom-scrollbar whitespace-nowrap">
               <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mr-1 shrink-0">Meetup Templates:</span>
               {[
-                { label: " SAS Office Lobby", text: "Hi! Can we meet at the SAS Office Lobby to coordinate the handoff?" },
+                { label: " SpotFound Lobby", text: "Hi! Can we meet at the SpotFound Office Lobby to coordinate the handoff?" },
                 { label: " Library Lobby", text: "Hello! I am near the Campus Library Lobby. Can we meet there to return the item?" },
                 { label: " Student Canteen", text: "Hey! Let's meet up at the Student Canteen for the item exchange." },
-                { label: " Meet Tomorrow", text: "Hi! Are you free to meet tomorrow at 10:00 AM at the SAS Office?" },
+                { label: " Meet Tomorrow", text: "Hi! Are you free to meet tomorrow at 10:00 AM at the SpotFound Office?" },
               ].map((tpl) => (
                 <button
                   key={tpl.label}
@@ -832,7 +832,7 @@ const ChatPage = () => {
                   <span className="text-[10px] text-blue-400 font-bold uppercase tracking-wider mr-1 shrink-0">Admin:</span>
                   {[
                     { label: "Verify", text: "Hello! To verify ownership, could you please provide more details about this item (e.g., brand, specific marks, or content inside)?" },
-                    { label: "Pickup Ready", text: "Good news! Your item is now ready for pickup at the SAS Office. Please bring your school ID for verification." },
+                    { label: "Pickup Ready", text: "Good news! Your item is now ready for pickup at SpotFound. Please bring your ID for verification." },
                     { label: "Claim Approved", text: "Your ownership claim has been successfully verified and approved. You may now coordinate the pickup at your earliest convenience." },
                   ].map((tpl) => (
                     <button
@@ -912,13 +912,13 @@ const ChatPage = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                 {(currentUser?.role === "ADMIN" ? [
                   { title: "Ownership Verification", desc: "Ask for unique marks, brands, or specific contents to verify the claimant.", tip: "Example: 'Could you describe any unique scratches or contents inside?'" },
-                  { title: "Pickup Coordination", desc: "Coordinate a safe time and location for the student to retrieve their item.", tip: "Example: 'Your item is at the SAS Office. Bring your ID for verification.'" },
-                  { title: "Found Item Follow-up", desc: "Thank students for reporting found items and guide them to surrendering it.", tip: "Example: 'Thank you for your report! Please surrender the item to SAS.'" },
+                  { title: "Pickup Coordination", desc: "Coordinate a safe time and location for the user to retrieve their item.", tip: "Example: 'Your item is at SpotFound. Bring your ID for verification.'" },
+                  { title: "Found Item Follow-up", desc: "Thank users for reporting found items and guide them to surrendering it.", tip: "Example: 'Thank you for your report! Please surrender the item to SpotFound.'" },
                   { title: "Claim Resolution", desc: "Notify users once their claim has been officially verified and closed.", tip: "Example: 'Your claim for this item has been approved. Coordination complete.'" },
                 ] : [
                   { title: "Inquire About Claims", desc: "Ask for updates on your pending ownership claims or verification status.", tip: "Example: 'Hi! I'd like to check the status of my claim for the blue wallet.'" },
                   { title: "Report Updates", desc: "Provide additional details about an item you reported found or lost.", tip: "Example: 'I found additional contents inside the bag I reported earlier.'" },
-                  { title: "Pickup Inquiries", desc: "Ask for office hours or specific instructions for picking up your item.", tip: "Example: 'What time can I visit the SAS office to retrieve my ID?'" },
+                  { title: "Pickup Inquiries", desc: "Ask for office hours or specific instructions for picking up your item.", tip: "Example: 'What time can I visit SpotFound to retrieve my item?'" },
                   { title: "General Assistance", desc: "Need help with the platform? Our staff is here to guide you.", tip: "Example: 'I'm having trouble uploading images for my report. Can you help?'" },
                 ]).map((s, i) => (
                   <div key={i} className="p-4 rounded-2xl bg-gray-900/60 border border-white/5 hover:border-blue-500/30 transition-all group flex flex-col h-full">

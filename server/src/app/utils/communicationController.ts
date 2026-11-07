@@ -65,8 +65,8 @@ export const createAnnouncement = async (req: Request, res: Response) => {
 
       const emailPromises = targets.map((u: any) =>
         sendEmail({
-          fromName: process.env.SMTP_FROM_NAME || "NBSC SAS Lost & Found",
-          fromEmail: process.env.SMTP_FROM_EMAIL || "noreply@nbsc.edu.ph",
+          fromName: process.env.SMTP_FROM_NAME || "SpotFound Lost & Found",
+          fromEmail: process.env.SMTP_FROM_EMAIL || "noreply@spotfound.com",
           toEmail: u.email,
           subject: title,
           html: announcementEmailTemplate({ title, message, type, recipientName: u.name || u.username || "Student" }),
@@ -105,8 +105,8 @@ export const sendMassReminder = async (req: Request, res: Response) => {
     const emailPromises = targets.map((u: any) => {
       const template = reminderEmailTemplate({ recipientName: u.name || u.username || "Student" });
       return sendEmail({
-        fromName: process.env.SMTP_FROM_NAME || "NBSC SAS Lost & Found",
-        fromEmail: process.env.SMTP_FROM_EMAIL || "noreply@nbsc.edu.ph",
+        fromName: process.env.SMTP_FROM_NAME || "SpotFound Lost & Found",
+        fromEmail: process.env.SMTP_FROM_EMAIL || "noreply@spotfound.com",
         toEmail: u.email,
         subject: template.subject,
         html: template.html,
@@ -210,8 +210,8 @@ export const replyToTicket = async (req: Request, res: Response) => {
     // Send reply email if senderEmail exists
     if (ticket.senderEmail) {
       await sendEmail({
-        fromName: process.env.SMTP_FROM_NAME || "NBSC SAS Lost & Found",
-        fromEmail: process.env.SMTP_FROM_EMAIL || "noreply@nbsc.edu.ph",
+        fromName: process.env.SMTP_FROM_NAME || "SpotFound Lost & Found",
+        fromEmail: process.env.SMTP_FROM_EMAIL || "noreply@spotfound.com",
         toEmail: ticket.senderEmail,
         subject: `Re: ${ticket.subject} — Support Reply`,
         html: ticketReplyEmailTemplate({
@@ -333,7 +333,7 @@ export const announcementEmailTemplate = (data: { title: string; message: string
         <tr><td style="height:4px;background:${accentColor};"></td></tr>
         <tr><td style="padding:36px 40px 28px;border-bottom:1px solid #e2e8f0;">
           <table width="100%" cellpadding="0" cellspacing="0"><tr>
-            <td><p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">NBSC SAS Lost &amp; Found</p>
+            <td><p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">SpotFound Lost &amp; Found</p>
               <h1 style="margin:0;font-size:22px;font-weight:700;color:#0f172a;">${data.title}</h1></td>
             <td align="right" valign="top"><span style="background:#f1f5f9;color:${accentColor};font-size:11px;font-weight:700;padding:6px 14px;border-radius:16px;border:1px solid ${accentColor}33;">${badge}</span></td>
           </tr></table>
@@ -343,8 +343,8 @@ export const announcementEmailTemplate = (data: { title: string; message: string
           <div style="font-size:14px;color:#334155;line-height:1.8;white-space:pre-wrap;">${data.message}</div>
         </td></tr>
         <tr><td style="padding:24px 40px;background:#f8fafc;border-top:1px solid #e2e8f0;">
-          <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">NBSC SAS Lost &amp; Found System</p>
-          <p style="margin:0;font-size:12px;color:#94a3b8;">Northern Bukidnon State College · Student Affairs Services</p>
+          <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">SpotFound Lost &amp; Found System</p>
+          <p style="margin:0;font-size:12px;color:#94a3b8;">SpotFound · Lost &amp; Found Services</p>
         </td></tr>
       </table>
     </td></tr>
@@ -359,7 +359,7 @@ const ticketReplyEmailTemplate = (data: { senderName: string; subject: string; o
       <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e2e8f0;">
         <tr><td style="height:4px;background:linear-gradient(90deg,#1d4ed8,#0891b2);"></td></tr>
         <tr><td style="padding:36px 40px 28px;border-bottom:1px solid #e2e8f0;">
-          <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">NBSC SAS Support</p>
+          <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#94a3b8;">SpotFound Support</p>
           <h1 style="margin:0;font-size:20px;font-weight:700;color:#0f172a;">We've responded to your ticket</h1>
         </td></tr>
         <tr><td style="padding:32px 40px;">
@@ -379,8 +379,8 @@ const ticketReplyEmailTemplate = (data: { senderName: string; subject: string; o
           </table>
         </td></tr>
         <tr><td style="padding:24px 40px;background:#f8fafc;border-top:1px solid #e2e8f0;">
-          <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">NBSC SAS Lost &amp; Found System</p>
-          <p style="margin:0;font-size:12px;color:#94a3b8;">Northern Bukidnon State College · Student Affairs Services</p>
+          <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#334155;">SpotFound Lost &amp; Found System</p>
+          <p style="margin:0;font-size:12px;color:#94a3b8;">SpotFound · Lost &amp; Found Services</p>
         </td></tr>
       </table>
     </td></tr>

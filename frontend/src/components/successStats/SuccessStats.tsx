@@ -13,7 +13,7 @@ const SuccessStats = () => {
       icon: <FaUserGraduate className="w-6 h-6" />,
       number: "3,500+",
       label: "Students Served",
-      description: "Active SAS community members",
+      description: "Active SpotFound community members",
       color: "cyan",
     },
     {
@@ -51,7 +51,7 @@ const SuccessStats = () => {
         <div className="max-w-2xl mb-14">
           <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">By the Numbers</p>
           <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-4">
-            SAS Lost & Found{" "}
+            SpotFound Lost & Found{" "}
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
               Impact
             </span>

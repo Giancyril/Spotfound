@@ -102,6 +102,7 @@ const getLostItem = (...args_1) => __awaiter(void 0, [...args_1], void 0, functi
                 include: {
                     user: { select: { id: true, username: true, email: true, role: true } },
                     category: true,
+                    sightings: { orderBy: { createdAt: "desc" } },
                 },
             });
             return result;
@@ -162,7 +163,27 @@ const getMyLostItem = (user) => __awaiter(void 0, void 0, void 0, function* () {
     }
     return prisma_1.default.lostItem.findMany({
         where: whereConditions,
-        include: { user: true, category: true, sightings: { orderBy: { createdAt: "desc" } } },
+        include: {
+            user: true,
+            category: true,
+            sightings: { orderBy: { createdAt: "desc" } },
+            matchNotifications: {
+                include: {
+                    foundItem: {
+                        include: {
+                            claim: {
+                                where: { isDeleted: false },
+                                include: {
+                                    auditLogs: {
+                                        orderBy: { createdAt: "asc" }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
     });
 });
 const editMyLostItem = (data, user) => __awaiter(void 0, void 0, void 0, function* () {

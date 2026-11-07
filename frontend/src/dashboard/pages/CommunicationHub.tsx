@@ -1239,7 +1239,7 @@ const EMAIL_TEMPLATES = [
     trigger: "Sent to reporter when a lost item is submitted",
     preview: {
       subject: "Found Item Report Submitted — [Item Name]",
-      to: "reporter@nbsc.edu.ph",
+      to: "reporter@spotfound.com",
       fields: [
         { label: "Reporter Name", value: "Juan Dela Cruz" },
         { label: "Item Name", value: "Black Backpack" },
@@ -1248,7 +1248,7 @@ const EMAIL_TEMPLATES = [
         { label: "Description", value: "I am reporting a lost black bag with keychains." },
         { label: "Status", value: "⏳ Under Review", highlight: "text-amber-400" },
       ],
-      note: "What happens next? The SAS office will review your report and contact the owner or relevant department to coordinate return of the item.",
+      note: "What happens next? SpotFound will review your report and coordinate return of the item.",
       noteColor: "#93c5fd", noteBg: "rgba(30, 58, 138, 0.1)", noteBorder: "rgba(59, 130, 246, 0.2)",
     },
   },
@@ -1261,7 +1261,7 @@ const EMAIL_TEMPLATES = [
     trigger: "Sent to claimant when a claim is approved and item received",
     preview: {
       subject: "Item Successfully Claimed — [Item Name]",
-      to: "claimant@nbsc.edu.ph",
+      to: "claimant@spotfound.com",
       fields: [
         { label: "Claimant Name", value: "Maria Santos" },
         { label: "Item", value: "Black Backpack" },
@@ -1269,7 +1269,7 @@ const EMAIL_TEMPLATES = [
         { label: "Date Claimed", value: "January 20, 2026" },
         { label: "Status", value: "✓ Successfully Received", highlight: "text-emerald-400" },
       ],
-      note: "If you did NOT claim this item or did not authorize this transaction, please contact the SAS office immediately.",
+      note: "If you did NOT claim this item or did not authorize this transaction, please contact SpotFound immediately.",
       noteColor: "#6ee7b7", noteBg: "rgba(5, 150, 105, 0.1)", noteBorder: "rgba(16, 185, 129, 0.2)",
     },
   },
@@ -1282,7 +1282,7 @@ const EMAIL_TEMPLATES = [
     trigger: "Sent when the system finds a potential match for a lost item",
     preview: {
       subject: "Potential Match Found — [Item Name]",
-      to: "reporter@nbsc.edu.ph",
+      to: "reporter@spotfound.com",
       fields: [
         { label: "Reporter Name", value: "Juan Dela Cruz" },
         { label: "Item Name", value: "Black Backpack" },
@@ -1290,7 +1290,7 @@ const EMAIL_TEMPLATES = [
         { label: "Date Found", value: "January 18, 2026" },
         { label: "Match Conf.", value: "🎯 92% Match Score", highlight: "text-emerald-400" },
       ],
-      note: "Is this your item? Our Smart Match Engine calculated a high probability that this is yours based on location, time, and description. Please visit the SAS office at your earliest convenience to verify and claim your item.",
+      note: "Is this your item? Our Smart Match Engine calculated a high probability that this is yours based on location, time, and description. Please visit SpotFound at your earliest convenience to verify and claim your item.",
       noteColor: "#ddd6fe", noteBg: "rgba(91, 33, 182, 0.1)", noteBorder: "rgba(139, 92, 246, 0.2)",
     },
   },
@@ -1302,14 +1302,14 @@ const EMAIL_TEMPLATES = [
     accent: "#3b82f6",
     trigger: "Sent manually by admin from the Notification Center",
     preview: {
-      subject: "Friendly Reminder: Have you lost anything at school recently?",
-      to: "student@nbsc.edu.ph",
+      subject: "Friendly Reminder: Have you lost anything recently?",
+      to: "user@spotfound.com",
       fields: [
         { label: "Recipient", value: "Student" },
         { label: "Notification", value: "Lost & Found Check" },
         { label: "Purpose", value: "Reminder to not lose your item." },
       ],
-      note: "Check the Dashboard! Log in to your Student Dashboard to view all recently found items. You might just find what you're looking for!",
+      note: "Check the Dashboard! Log in to your Dashboard to view all recently found items. You might just find what you're looking for!",
       noteColor: "#bfdbfe", noteBg: "rgba(59, 130, 246, 0.1)", noteBorder: "rgba(59, 130, 246, 0.2)",
     },
   },
@@ -1322,7 +1322,7 @@ const EMAIL_TEMPLATES = [
     trigger: "Sent every Monday at 9:00 AM to all administrators, listing items pending permanent deletion within 7 days",
     preview: {
       subject: "[Lost & Found] Weekly Deletion Report — 3 Items Pending Purge",
-      to: "admin@nbsc.edu.ph",
+      to: "admin@spotfound.com",
       fields: [
         { label: "FoundItem", value: "Water Bottle (Hydro Flask) - Cafeteria (3 days left)", highlight: "text-red-400" },
         { label: "LostItem", value: "Calculator (Casio) - SWDC Building Room 102 (5 days left)", highlight: "text-red-400" },
@@ -1341,7 +1341,7 @@ const EMAIL_TEMPLATES = [
     trigger: "Sent every Sunday at 11:00 PM to all administrators when items are missing from Google Sheets",
     preview: {
       subject: "[Lost & Found] ⚠️ Sheets Reconciliation Alert — 3 items missing",
-      to: "admin@nbsc.edu.ph",
+      to: "admin@spotfound.com",
       fields: [
         { label: "Total Checked", value: "42 items checked (last 7 days)" },
         { label: "LOST Missing", value: "Black Backpack — Library (Jan 20, 2026)", highlight: "text-red-400" },
@@ -1407,7 +1407,7 @@ const EmailTemplatesTab = () => {
           <div className="p-5">
             <div className="h-1 rounded-full mb-4" style={{ background: `linear-gradient(90deg, ${active.accent}, #0891b2)` }} />
             <div className="mb-4 pb-4 border-b border-white/5">
-              <p className="text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-1">NBSC SAS Lost &amp; Found</p>
+              <p className="text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-1">SpotFound Lost &amp; Found</p>
               <p className="text-white text-sm font-bold">{active.preview.subject.split(" — ")[0]}</p>
             </div>
             <div className="bg-gray-800/60 border border-white/5 rounded-xl overflow-hidden mb-4">
@@ -1427,8 +1427,8 @@ const EmailTemplatesTab = () => {
             </div>
             <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between">
               <div>
-                <p className="text-[11px] font-bold text-gray-400">NBSC SAS Lost &amp; Found System</p>
-                <p className="text-[10px] text-gray-600">Northern Bukidnon State College · Student Affairs Services</p>
+                <p className="text-[11px] font-bold text-gray-400">SpotFound Lost &amp; Found System</p>
+                <p className="text-[10px] text-gray-600">SpotFound · Lost &amp; Found Services</p>
               </div>
               <p className="text-[10px] text-gray-700">Do not reply</p>
             </div>

@@ -1392,8 +1392,8 @@ const AnalyticsPage = () => {
           </button>
           <ExportButton
             label="Export"
-            filename="nbsc-analytics"
-            pdfTitle="NBSC Lost & Found — Analytics Report"
+            filename="spotfound-analytics"
+            pdfTitle="SpotFound — Analytics Report"
             getRows={() => (stats?.monthlyStats ?? []).map((m: any) => ({
               Month: m.month,
               "Found Items": m.found ?? 0,

@@ -23,9 +23,9 @@ const Faq = () => {
     "Be specific in your descriptions include brand names, colors, and unique features to help others identify your item.",
     "Check your email regularly for updates on your claims and reports the system sends automatic notifications.",
     "Use the Nereid AI chatbot for quick answers about the system it's available 24/7 in the navbar.",
-    "Visit the Bulletin Board to see community announcements and updates from the SAS office.",
+    "Visit the Bulletin Board to see community announcements and updates from SpotFound.",
     "Earn points by reporting found items and having claims approved check the leaderboard to track your progress.",
-    "For urgent inquiries, contact the SAS office directly during office hours: Monday-Friday, 8:00 AM - 6:00 PM.",
+    "For urgent inquiries, contact SpotFound directly during operating hours: Monday-Friday, 8:00 AM - 6:00 PM.",
   ];
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const Faq = () => {
     {
       question: " I found an item. What should I do?",
       answer:
-        "Browse the Lost Items page to see if the item matches a report, then click 'I Found This Item' on that listing and bring the item to the SAS Office",
+        "Browse the Lost Items page to see if the item matches a report, then click 'I Found This Item' on that listing and bring the item to SpotFound",
     },
     {
       question: "How do I claim a found item?",
@@ -104,7 +104,7 @@ const Faq = () => {
               </span>
             </h2>
             <p className="text-gray-400 text-sm lg:text-lg leading-relaxed text-justify">
-              Everything you need to know about the SAS Lost & Found.
+              Everything you need to know about SpotFound.
             </p>
           </div>
 

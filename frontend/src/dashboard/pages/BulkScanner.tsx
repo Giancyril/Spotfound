@@ -176,9 +176,9 @@ const BulkScanner = () => {
   const [sName, setSName] = useState("");
   const [sCatId, setSCatId] = useState("");
   const [sDesc, setSDesc] = useState("");
-  const [sLocation, setSLocation] = useState("SAS Office");
+  const [sLocation, setSLocation] = useState("SpotFound Office");
   const [sDate, setSDate] = useState(new Date().toISOString().split("T")[0]);
-  const [sReporter, setSReporter] = useState("Admin - SAS Office");
+  const [sReporter, setSReporter] = useState("Admin - SpotFound Office");
   const [sEmail, setSEmail] = useState("");
 
   const typewriter = useTypewriter();
@@ -277,7 +277,7 @@ const BulkScanner = () => {
       if (res.error || res?.data?.success === false) throw new Error("Failed to save item.");
       toast.success("🎉 Item registered successfully!");
       setSSubmitted(true);
-      setTimeout(() => { sClear(); setSLocation("SAS Office"); setSDate(new Date().toISOString().split("T")[0]); setSReporter("Admin - SAS Office"); setSEmail(""); setSSubmitted(false); }, 2500);
+      setTimeout(() => { sClear(); setSLocation("SpotFound Office"); setSDate(new Date().toISOString().split("T")[0]); setSReporter("Admin - SpotFound Office"); setSEmail(""); setSSubmitted(false); }, 2500);
     } catch (err: any) {
       toast.error(err.message || "Failed to submit item.");
     } finally { setSSubmitting(false); }
@@ -291,10 +291,10 @@ const BulkScanner = () => {
   // ══════════════════════════════════════════════════════════════════════════
   const [items, setItems] = useState<ProcessedItem[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [batchLocation, setBatchLocation] = useState("SAS Office");
+  const [batchLocation, setBatchLocation] = useState("SpotFound Office");
   const [batchSummary, setBatchSummary] = useState<{ success: number; failed: number } | null>(null);
   const itemsRef = useRef<ProcessedItem[]>([]);
-  const locationRef = useRef("SAS Office");
+  const locationRef = useRef("SpotFound Office");
 
   const updateItems = useCallback((action: React.SetStateAction<ProcessedItem[]>) => {
     setItems(prev => {
@@ -597,7 +597,7 @@ const BulkScanner = () => {
                   </div>
                   <div className="p-3">
                     <LocationAutocomplete value={sLocation} onChange={setSLocation}
-                      placeholder="e.g. Library, SAS Office…"
+                      placeholder="e.g. Library, SpotFound Office…"
                       className="w-full bg-transparent text-white text-sm placeholder-gray-600 focus:outline-none" />
                   </div>
                 </div>
@@ -683,7 +683,7 @@ const BulkScanner = () => {
                 <div>
                   <label className="block text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1.5">Batch Location</label>
                   <LocationAutocomplete value={batchLocation} onChange={updateLocation} disabled={isProcessing}
-                    placeholder="e.g. Library, SAS Office..."
+                    placeholder="e.g. Library, SpotFound Office..."
                     className="w-full px-3 py-2 bg-gray-800 border border-white/10 rounded-xl text-white text-xs placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/30 disabled:opacity-50" />
                 </div>
 

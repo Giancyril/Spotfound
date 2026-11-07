@@ -57,8 +57,8 @@ export const startAnnouncementScheduler = () => {
 
           const emailPromises = targets.map((u: any) =>
             sendEmail({
-              fromName: process.env.SMTP_FROM_NAME || "NBSC SAS Lost & Found",
-              fromEmail: process.env.SMTP_FROM_EMAIL || "noreply@nbsc.edu.ph",
+              fromName: process.env.SMTP_FROM_NAME || "SpotFound Lost & Found",
+              fromEmail: process.env.SMTP_FROM_EMAIL || "noreply@spotfound.com",
               toEmail: u.email,
               subject: ann.title,
               html: announcementEmailTemplate({

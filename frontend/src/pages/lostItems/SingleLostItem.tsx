@@ -150,7 +150,7 @@ const SingleLostItem = () => {
         img: lostItem?.img || "",
         location: data.location,
         date: new Date(foundDate + "T00:00:00"),
-        claimProcess: "Visit the SAS office with valid ID to claim this item.",
+        claimProcess: "Visit SpotFound with valid ID to claim this item.",
         categoryId: lostItem?.category?.id,
         lostItemId: lostItemId,
         reporterName: data.reporterName || "",
@@ -678,7 +678,7 @@ const SingleLostItem = () => {
 
                 <div className="flex items-start gap-2.5 bg-blue-500/5 border border-blue-500/15 rounded-lg px-4 py-3">
                   <p className="text-blue-300/80 text-xs leading-relaxed text-justify">
-                    Your report will be submitted to the SAS office. The owner can visit and claim it with proof of ownership.
+                    Your report will be submitted to SpotFound. The owner can visit and claim it with proof of ownership.
                   </p>
                 </div>
 

@@ -296,7 +296,7 @@ const sendReconciliationReport = async (
     })),
   });
 
-  const fromName = process.env.SMTP_FROM_NAME || "NBSC SAS Lost & Found";
+  const fromName = process.env.SMTP_FROM_NAME || "SpotFound Lost & Found";
   const fromEmail = process.env.SMTP_FROM_EMAIL || "mijaresgiancyril@gmail.com";
 
   const sent: string[] = [];

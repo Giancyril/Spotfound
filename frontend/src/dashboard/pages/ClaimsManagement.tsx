@@ -1109,7 +1109,7 @@ const ClaimsManagement = () => {
                 placeholder="Search by item, admin, or status..."
                 className="w-full pl-9 pr-4 py-2.5 bg-gray-900 border border-white/5 rounded-xl text-sm text-white placeholder-gray-600 focus:outline-none focus:border-violet-500/40 transition-colors" />
             </div>
-            <ExportButton label="Export" filename="nbsc-audit-log" pdfTitle="NBSC Lost & Found — Claim Audit Log"
+            <ExportButton label="Export" filename="spotfound-audit-log" pdfTitle="SpotFound — Claim Audit Log"
               getRows={() => filteredLogs.map((log: any) => ({
                 "Item": log.claim?.foundItem?.foundItemName ?? "Unknown",
                 "Action": log.action ?? "", "From Status": log.fromStatus ?? "",
@@ -2379,7 +2379,7 @@ const ClaimsManagement = () => {
               </div>
               <div>
                 <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Recipient Email <span className="text-red-400">*</span></label>
-                <input type="email" required value={claimEmailToAddress} onChange={e => setClaimEmailToAddress(e.target.value)} placeholder="claimant@nbsc.edu.ph"
+                <input type="email" required value={claimEmailToAddress} onChange={e => setClaimEmailToAddress(e.target.value)} placeholder="claimant@spotfound.com"
                   className="w-full px-4 py-2.5 bg-gray-800 border border-white/8 rounded-xl text-white text-sm placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all" />
               </div>
               <div className="flex gap-2">

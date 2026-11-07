@@ -343,7 +343,7 @@ console.warn("First item:", JSON.stringify(items[0], null, 2));
                 {/* Reported by */}
                 <div className="min-w-0">
                   <p className="text-blue-400 text-xs truncate font-medium">
-                    {item.reporterName || item.user?.username || "SAS Office"}
+                    {item.reporterName || item.user?.username || "SpotFound Office"}
                   </p>
                   {item.schoolEmail || item.user?.email ? (
                     <p className="text-gray-500 text-[10px] truncate mt-0.5">
@@ -401,7 +401,7 @@ console.warn("First item:", JSON.stringify(items[0], null, 2));
               <div>
                 <p className="text-gray-600 text-[10px] uppercase tracking-widest">Reporter</p>
                 <p className="text-blue-400 text-xs font-medium mt-0.5">
-                  {item.reporterName || item.user?.username || "SAS Office"}
+                  {item.reporterName || item.user?.username || "SpotFound Office"}
                 </p>
                 {item.user?.email || item.schoolEmail ? (
                   <p className="text-gray-500 text-[10px] mt-0.5">

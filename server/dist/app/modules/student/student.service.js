@@ -75,18 +75,28 @@ const parseGvizResponse = (data) => {
         throw err;
     }
 };
+const getSecureMasterlistUrl = () => {
+    if (process.env.GOOGLE_SHEETS_MASTERLIST_URL) {
+        return process.env.GOOGLE_SHEETS_MASTERLIST_URL;
+    }
+    if (process.env.GOOGLE_SHEETS_WEBHOOK_URL) {
+        const separator = process.env.GOOGLE_SHEETS_WEBHOOK_URL.includes("?") ? "&" : "?";
+        const key = process.env.GOOGLE_SHEETS_ACCESS_KEY || "nbsc_masterlist_secret_key_2026";
+        return `${process.env.GOOGLE_SHEETS_WEBHOOK_URL}${separator}action=masterlist&key=${encodeURIComponent(key)}`;
+    }
+    return null;
+};
 // ── Masterlist fetcher (cache-first) ─────────────────────────────────────────
 /**
  * Returns the full student masterlist.
  *
  * Priority:
  *   1. Redis cache  → sub-5 ms, works during Sheets outages
- *   2. Gviz (live)  → fallback on cache miss or Redis unavailability
- *
- * All existing Gviz logic (axios, User-Agent header, 10s timeout,
- * parseGvizResponse error handling) is preserved unchanged.
+ *   2. Authenticated Google Apps Script Webhook (for private/restricted Sheets)
+ *   3. Gviz (live public fallback if webhook not configured)
  */
 const fetchMasterlist = () => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b, _c;
     // ── 1. Try Redis cache ──────────────────────────────────────────────────────
     try {
         const cached = yield (0, masterlist_cache_1.getMasterlistCache)();
@@ -94,15 +104,38 @@ const fetchMasterlist = () => __awaiter(void 0, void 0, void 0, function* () {
             console.log(`[Masterlist] Cache hit – ${cached.length} students`);
             return cached;
         }
-        console.log("[Masterlist] Cache miss – falling back to Gviz");
+        console.log("[Masterlist] Cache miss – falling back to remote source");
     }
     catch (cacheErr) {
-        // Redis is down / unreachable — degrade gracefully to Gviz
-        console.warn("[Masterlist] Redis unavailable, falling back to Gviz:", cacheErr);
+        // Redis is down / unreachable — degrade gracefully
+        console.warn("[Masterlist] Redis unavailable, falling back to remote:", cacheErr);
     }
-    // ── 2. Fallback: Gviz (Google Sheets) ───────────────────────────────────────
+    // ── 2. Authenticated Private Sheet Webhook ───────────────────────────────────
+    const secureUrl = getSecureMasterlistUrl();
+    if (secureUrl) {
+        try {
+            console.log("[Masterlist] Fetching securely via authenticated webhook proxy…");
+            const res = yield axios_1.default.get(secureUrl, { timeout: 10000 });
+            if (((_a = res.data) === null || _a === void 0 ? void 0 : _a.success) && Array.isArray((_b = res.data) === null || _b === void 0 ? void 0 : _b.data)) {
+                console.log(`[Masterlist] Successfully fetched ${res.data.data.length} students via authenticated webhook`);
+                return res.data.data.map((s) => ({
+                    id: String(s.id || "").trim(),
+                    email: String(s.email || "").trim(),
+                    name: String(s.name || "").trim(),
+                    course: String(s.course || s.department || "").trim(),
+                    department: String(s.department || s.course || "").trim(),
+                    yearLevel: String(s.yearLevel || "").trim(),
+                }));
+            }
+            console.warn("[Masterlist] Authenticated webhook returned non-success response, falling back to Gviz:", (_c = res.data) === null || _c === void 0 ? void 0 : _c.error);
+        }
+        catch (webhookErr) {
+            console.warn("[Masterlist] Authenticated webhook failed, falling back to Gviz:", webhookErr.message);
+        }
+    }
+    // ── 3. Fallback: Gviz (requires public sheet) ──────────────────────────────
     try {
-        console.log("[Masterlist] Fetching from:", GVIZ_URL);
+        console.log("[Masterlist] Fetching from Gviz endpoint:", GVIZ_URL);
         const response = yield axios_1.default.get(GVIZ_URL, {
             headers: {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
@@ -111,7 +144,7 @@ const fetchMasterlist = () => __awaiter(void 0, void 0, void 0, function* () {
         });
         if (response.status !== 200) {
             console.error("[Masterlist] Google Sheets HTTP Error:", response.status, response.statusText);
-            throw new error_1.default(http_status_codes_1.StatusCodes.SERVICE_UNAVAILABLE, `Google Sheets error (${response.status}). Check if the sheet is public.`);
+            throw new error_1.default(http_status_codes_1.StatusCodes.SERVICE_UNAVAILABLE, `Google Sheets error (${response.status}). Check if the sheet is shared or webhook is configured.`);
         }
         return parseGvizResponse(response.data);
     }
@@ -129,7 +162,7 @@ const fetchMasterlist = () => __awaiter(void 0, void 0, void 0, function* () {
 const getStudentById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const masterlist = yield fetchMasterlist();
     const search = normalizeId(id);
-    const student = masterlist.find(s => normalizeId(s.id) === search);
+    const student = masterlist.find((s) => normalizeId(s.id) === search);
     if (!student) {
         throw new error_1.default(http_status_codes_1.StatusCodes.NOT_FOUND, `Student with ID "${id}" not found in Masterlist.`);
     }
@@ -154,18 +187,18 @@ const getStudentByDetails = (name, email) => __awaiter(void 0, void 0, void 0, f
     const searchId = normalizeId(emailLocalPart);
     // ── Fast path: if email looks like an NBSC email or pure digits, try direct ID lookup first ──
     if (searchEmail && (searchEmail.includes("@nbsc.edu.ph") || /^\d{6,10}$/.test(emailLocalPart))) {
-        const byId = masterlist.find(s => normalizeId(s.id) === searchId);
+        const byId = masterlist.find((s) => normalizeId(s.id) === searchId);
         if (byId)
             return byId;
         // Also try exact email match
-        const byEmail = masterlist.find(s => s.email.toLowerCase() === searchEmail);
+        const byEmail = masterlist.find((s) => s.email.toLowerCase() === searchEmail);
         if (byEmail)
             return byEmail;
     }
     const normalizeName = (s) => s.toLowerCase().replace(/[^a-z0-9\s]/g, "")
         .split(/\s+/).filter(Boolean).sort().join(" ");
     const normalizedSearch = normalizeName(searchName);
-    const scored = masterlist.map(s => {
+    const scored = masterlist.map((s) => {
         let score = 0;
         const rowId = normalizeId(s.id);
         const rowEmail = s.email.toLowerCase();
@@ -193,7 +226,7 @@ const getStudentByDetails = (name, email) => __awaiter(void 0, void 0, void 0, f
         return { student: s, score };
     });
     // Lower minimum threshold to 10 so partial name matches still work
-    const best = scored.filter(c => c.score >= 10).sort((a, b) => b.score - a.score)[0];
+    const best = scored.filter((c) => c.score >= 10).sort((a, b) => b.score - a.score)[0];
     if (!best) {
         throw new error_1.default(http_status_codes_1.StatusCodes.NOT_FOUND, "Student not found in Masterlist. Please check the name or email.");
     }
@@ -202,7 +235,7 @@ const getStudentByDetails = (name, email) => __awaiter(void 0, void 0, void 0, f
 const validateForRegistration = (schoolId) => __awaiter(void 0, void 0, void 0, function* () {
     const masterlist = yield fetchMasterlist();
     const search = normalizeId(schoolId);
-    const student = masterlist.find(s => normalizeId(s.id) === search);
+    const student = masterlist.find((s) => normalizeId(s.id) === search);
     if (!student) {
         throw new error_1.default(http_status_codes_1.StatusCodes.NOT_FOUND, "School ID not found in masterlist. Contact your registrar.");
     }

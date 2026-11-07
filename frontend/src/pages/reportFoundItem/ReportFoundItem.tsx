@@ -999,7 +999,7 @@ const ReportFoundItem = () => {
                             control={control}
                             rules={{
                               required: "School email is required",
-                              pattern: { value: /^[^\s@]+@nbsc\.edu\.ph$/i, message: "Must be a valid NBSC email" },
+                              pattern: { value: /^[^\s@]+@nbsc\.edu\.ph$/i, message: "Must be a valid institutional email" },
                             }}
                             render={({ field }) => (
                               <input
@@ -1420,7 +1420,7 @@ const ReportFoundItem = () => {
           </div>
 
           <p className="text-center text-xs text-gray-600 mt-4">
-            All reports are reviewed by the NBSC Lost & Found office.
+            All reports are reviewed by the SpotFound team.
           </p>
         </div>
       </section>

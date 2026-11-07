@@ -150,7 +150,7 @@ const Services = () => {
                 </span>
               </h2>
               <p className="text-gray-400 text-sm lg:text-base leading-relaxed text-justify">
-                Everything SAS students and staff need to report, search, and recover lost items all in one place.
+                Everything students and staff need to report, search, and recover lost items all in one place with SpotFound.
               </p>
             </div>
 
@@ -208,11 +208,10 @@ const Services = () => {
                 </>
               );
 
-              const className = `svc-card reveal reveal-delay-${(index % 3) + 1} group relative bg-gray-900 border border-gray-800 rounded-2xl p-3 xs:p-4 sm:p-6 flex flex-col transition-all duration-300 ${
-                service.tag === "Soon"
-                  ? "cursor-default opacity-75"
-                  : "cursor-pointer hover:bg-gray-800 hover:border-blue-700/50 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/20"
-              }`;
+              const className = `svc-card reveal reveal-delay-${(index % 3) + 1} group relative bg-gray-900 border border-gray-800 rounded-2xl p-3 xs:p-4 sm:p-6 flex flex-col transition-all duration-300 ${service.tag === "Soon"
+                ? "cursor-default opacity-75"
+                : "cursor-pointer hover:bg-gray-800 hover:border-blue-700/50 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/20"
+                }`;
 
               if (service.tag === "Soon") {
                 return (
@@ -233,7 +232,7 @@ const Services = () => {
           {/* ── Bottom CTA strip ── */}
           <div className="mt-10 flex flex-row items-center justify-between gap-2 bg-gray-900/60 border border-white/5 rounded-2xl px-3 py-3 sm:px-4 sm:py-4">
             <div className="flex items-center gap-2 sm:gap-3">
-              
+
               <div>
                 <p className="text-white text-[11px] sm:text-xs font-semibold">Need Assistance?</p>
                 <p className="text-gray-500 text-[9px] sm:text-[10px]">Visit our office or message us for support.</p>

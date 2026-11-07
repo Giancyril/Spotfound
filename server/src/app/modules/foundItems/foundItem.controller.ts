@@ -71,7 +71,7 @@ const createFoundItem = async (req: Request, res: Response) => {
           sheetName: "Found Items",
           timestamp: reportTimestamp,
           studentId,
-          reporterName: req.body.reporterName || "SAS Office",
+          reporterName: req.body.reporterName || "SpotFound Office",
           email: req.body.schoolEmail || "N/A",
           itemName: req.body.foundItemName,
           description: req.body.description || "",
@@ -88,7 +88,7 @@ const createFoundItem = async (req: Request, res: Response) => {
 
       // ── Send confirmation email ──────────────────────────────────────────────
       try {
-        const fromName = process.env.SMTP_FROM_NAME || "NBSC SAS Lost & Found";
+        const fromName = process.env.SMTP_FROM_NAME || "SpotFound Lost & Found";
         const fromEmail = process.env.SMTP_FROM_EMAIL || "mijaresgiancyril@gmail.com";
 
         const template = foundItemReportedTemplate({

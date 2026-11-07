@@ -157,8 +157,8 @@ const StarRating = ({ value, onChange }: { value: number; onChange: (v: number) 
 // ── FAQ data ──────────────────────────────────────────────────────────────────
 const FAQS = [
   { q: "How do I report a lost item?", a: "Go to the Report Lost Item page. Fill in the details including item description, location it was lost, and date. You'll receive a confirmation email." },
-  { q: "How do I claim a found item?", a: "Browse the Found Items page, find your item, and click 'Claim'. You'll need to provide proof of ownership. The SAS office will verify and contact you." },
-  { q: "How long does the claiming process take?", a: "The SAS office reviews claims during office hours (Monday–Friday, 8AM–5PM)." },
+  { q: "How do I claim a found item?", a: "Browse the Found Items page, find your item, and click 'Claim'. You'll need to provide proof of ownership. SpotFound will verify and contact you." },
+  { q: "How long does the claiming process take?", a: "SpotFound reviews claims during operating hours (Monday–Friday, 8AM–5PM)." },
   { q: "What happens if my lost item isn't found?", a: "Your report stays active in the system. If a matching item is found later, you'll receive an automatic email notification." },
   { q: "Can I report anonymously?", a: "You can report found items without logging in. However, for lost item reports and claims, your institutional email is required for verification." },
   { q: "How do I check the status of my claim?", a: "Log in to your student account and go to the Claims section in your dashboard to see the current status or visit the Item Status page." },
@@ -276,16 +276,16 @@ const SupportPage = () => {
               </span>
             </h1>
             <p className="text-gray-400 text-base max-w-lg mx-auto leading-relaxed">
-              Submit a support ticket, send us feedback, or browse our FAQ. The SAS office is available Monday – Friday, 8:00AM – 6:00PM.
+              Submit a support ticket, send us feedback, or browse our FAQ. The SpotFound support team is available Monday – Friday, 8:00AM – 6:00PM.
             </p>
           </div>
 
           {/* ── Quick info cards ── */}
           <div className="fade-up fade-up-2 grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
             {[
-              { icon: <BiSupport size={18} className="text-blue-400" />, label: "Office Hours", value: "Mon – Fri, 8:00 AM – 6:00 PM", bg: "bg-blue-500/10 border-blue-500/20", link: null },
-              { icon: <FaEnvelope size={14} className="text-blue-400" />, label: "Email Support", value: "sas@nbsc.edu.ph", bg: "bg-blue-500/10 border-blue-500/20", link: "mailto:sas@nbsc.edu.ph" },
-              { icon: <FaFacebookF size={14} className="text-blue-400" />, label: "Facebook Page", value: "NBSC Student Affairs & Services", bg: "bg-blue-500/10 border-blue-500/20", link: "https://www.facebook.com/nbscstudentaffairsandservices" },
+              { icon: <BiSupport size={18} className="text-blue-400" />, label: "Support Hours", value: "Mon – Fri, 8:00 AM – 6:00 PM", bg: "bg-blue-500/10 border-blue-500/20", link: null },
+              { icon: <FaEnvelope size={14} className="text-blue-400" />, label: "Email Support", value: "support@spotfound.com", bg: "bg-blue-500/10 border-blue-500/20", link: "mailto:support@spotfound.com" },
+              { icon: <FaFacebookF size={14} className="text-blue-400" />, label: "Facebook Page", value: "SpotFound", bg: "bg-blue-500/10 border-blue-500/20", link: "https://www.facebook.com/spotfound" },
             ].map((c, i) => {
               const content = (
                 <div className={`flex items-center gap-3 p-4 rounded-2xl border bg-gray-900 ${c.bg} ${c.link ? 'cursor-pointer hover:bg-blue-500/15 transition-all' : ''}`}>
@@ -532,8 +532,8 @@ const SupportPage = () => {
                 {/* Header */}
                 <div className="flex items-center gap-3">
                   <div>
-                    <p className="text-white text-sm font-bold">SAS Office</p>
-                    <p className="text-gray-500 text-[10px]">Student Affairs Services · NBSC</p>
+                    <p className="text-white text-sm font-bold">SpotFound Office</p>
+                    <p className="text-gray-500 text-[10px]">Lost &amp; Found Support · SpotFound</p>
                   </div>
                 </div>
 

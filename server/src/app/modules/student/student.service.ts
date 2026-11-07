@@ -166,7 +166,7 @@ const fetchMasterlist = async () => {
 const getStudentById = async (id: string) => {
   const masterlist = await fetchMasterlist();
   const search     = normalizeId(id);
-  const student    = masterlist.find(s => normalizeId(s.id) === search);
+  const student    = masterlist.find((s: any) => normalizeId(s.id) === search);
   if (!student) {
     throw new AppError(StatusCodes.NOT_FOUND, `Student with ID "${id}" not found in Masterlist.`);
   }
@@ -195,10 +195,10 @@ const getStudentByDetails = async (name: string, email: string) => {
 
   // ── Fast path: if email looks like an NBSC email or pure digits, try direct ID lookup first ──
   if (searchEmail && (searchEmail.includes("@nbsc.edu.ph") || /^\d{6,10}$/.test(emailLocalPart))) {
-    const byId = masterlist.find(s => normalizeId(s.id) === searchId);
+    const byId = masterlist.find((s: any) => normalizeId(s.id) === searchId);
     if (byId) return byId;
     // Also try exact email match
-    const byEmail = masterlist.find(s => s.email.toLowerCase() === searchEmail);
+    const byEmail = masterlist.find((s: any) => s.email.toLowerCase() === searchEmail);
     if (byEmail) return byEmail;
   }
 
@@ -208,7 +208,7 @@ const getStudentByDetails = async (name: string, email: string) => {
 
   const normalizedSearch = normalizeName(searchName);
 
-  const scored = masterlist.map(s => {
+  const scored = masterlist.map((s: any) => {
     let score      = 0;
     const rowId    = normalizeId(s.id);
     const rowEmail = s.email.toLowerCase();
@@ -236,7 +236,7 @@ const getStudentByDetails = async (name: string, email: string) => {
   });
 
   // Lower minimum threshold to 10 so partial name matches still work
-  const best = scored.filter(c => c.score >= 10).sort((a, b) => b.score - a.score)[0];
+  const best = scored.filter((c: any) => c.score >= 10).sort((a: any, b: any) => b.score - a.score)[0];
   if (!best) {
     throw new AppError(
       StatusCodes.NOT_FOUND,
@@ -249,7 +249,7 @@ const getStudentByDetails = async (name: string, email: string) => {
 const validateForRegistration = async (schoolId: string) => {
   const masterlist = await fetchMasterlist();
   const search     = normalizeId(schoolId);
-  const student    = masterlist.find(s => normalizeId(s.id) === search);
+  const student    = masterlist.find((s: any) => normalizeId(s.id) === search);
 
   if (!student) {
     throw new AppError(StatusCodes.NOT_FOUND, "School ID not found in masterlist. Contact your registrar.");

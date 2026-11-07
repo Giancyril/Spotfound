@@ -12,7 +12,7 @@ export const sendLostItemEmail = async (req: Request, res: Response) => {
       return sendResponse(res, { statusCode: StatusCodes.BAD_REQUEST, success: false, message: "Recipient email is required", data: null });
     }
 
-    const fromName = smtp?.fromName || process.env.SMTP_FROM_NAME || "NBSC SAS Lost & Found";
+    const fromName = smtp?.fromName || process.env.SMTP_FROM_NAME || "SpotFound Lost & Found";
     console.log("[email] sendLostItemEmail → to:", recipient?.toEmail, "| SENDGRID_KEY set:", !!process.env.SENDGRID_API_KEY);
 
     const template = lostItemReportedTemplate({
@@ -46,7 +46,7 @@ export const sendClaimApprovedEmail = async (req: Request, res: Response) => {
       return sendResponse(res, { statusCode: StatusCodes.BAD_REQUEST, success: false, message: "Recipient email is required", data: null });
     }
 
-    const fromName = smtp?.fromName || process.env.SMTP_FROM_NAME || "NBSC SAS Lost & Found";
+    const fromName = smtp?.fromName || process.env.SMTP_FROM_NAME || "SpotFound Lost & Found";
     console.log("[email] sendClaimApprovedEmail → to:", recipient?.toEmail, "| SENDGRID_KEY set:", !!process.env.SENDGRID_API_KEY);
 
     const template = itemClaimedTemplate({

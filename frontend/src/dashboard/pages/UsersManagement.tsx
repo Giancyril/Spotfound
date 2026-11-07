@@ -406,8 +406,8 @@ const UsersManagement = () => {
             </div>
             <form onSubmit={handleSubmit(handleCreateAdmin)} className="p-5 space-y-4 overflow-y-auto">
               {[
-                { label: "Username", key: "username", type: "text", placeholder: "e.g. sas_admin", rules: { required: "Required", minLength: { value: 3, message: "Min. 3 characters" }, pattern: { value: /^[a-zA-Z0-9_]+$/, message: "Letters, numbers, underscores only" } } },
-                { label: "Email", key: "email", type: "email", placeholder: "admin@nbsc.edu.ph", rules: { required: "Required", pattern: { value: /^\S+@\S+$/i, message: "Invalid email" } } },
+                { label: "Username", key: "username", type: "text", placeholder: "e.g. spotfound_admin", rules: { required: "Required", minLength: { value: 3, message: "Min. 3 characters" }, pattern: { value: /^[a-zA-Z0-9_]+$/, message: "Letters, numbers, underscores only" } } },
+                { label: "Email", key: "email", type: "email", placeholder: "admin@spotfound.com", rules: { required: "Required", pattern: { value: /^\S+@\S+$/i, message: "Invalid email" } } },
               ].map(({ label, key, type, placeholder, rules }) => (
                 <div key={key}>
                   <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">{label}</label>

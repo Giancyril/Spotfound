@@ -18,7 +18,7 @@ const StatusTimeline = ({ steps }: {
   <div className="relative flex flex-col gap-4 w-full">
     {steps.map((step, idx) => {
       const isCompleted = step.status === "completed";
-      const isActive    = step.status === "active";
+      const isActive = step.status === "active";
       return (
         <div key={idx} className="relative flex items-start gap-3">
           {idx !== steps.length - 1 && (
@@ -26,20 +26,18 @@ const StatusTimeline = ({ steps }: {
               <div className={`w-full transition-all duration-700 ${isCompleted ? "h-full bg-gradient-to-b from-blue-500 to-cyan-400" : "h-0"}`} />
             </div>
           )}
-          <div className={`relative z-10 w-7 h-7 shrink-0 rounded-lg flex items-center justify-center transition-all duration-300 ${
-            isCompleted
-              ? "bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/20"
-              : isActive
+          <div className={`relative z-10 w-7 h-7 shrink-0 rounded-lg flex items-center justify-center transition-all duration-300 ${isCompleted
+            ? "bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/20"
+            : isActive
               ? "bg-gray-800 text-cyan-400 border border-cyan-500/30 ring-2 ring-cyan-500/10"
               : "bg-gray-900 border border-gray-800 text-gray-600"
-          }`}>
+            }`}>
             <span className="scale-75">{step.icon}</span>
           </div>
           <div className={`flex-1 pt-0.5 transition-all ${isActive ? "opacity-100" : isCompleted ? "opacity-100" : "opacity-40"}`}>
             <div className="flex items-center justify-between gap-2">
-              <p className={`text-xs font-bold leading-tight ${
-                isCompleted ? "text-white" : isActive ? "text-cyan-400" : "text-gray-500"
-              }`}>{step.label}</p>
+              <p className={`text-xs font-bold leading-tight ${isCompleted ? "text-white" : isActive ? "text-cyan-400" : "text-gray-500"
+                }`}>{step.label}</p>
             </div>
             {step.date && (
               <p className="text-[10px] text-gray-600 mt-0.5">
@@ -125,7 +123,7 @@ const getLostItemSteps = (item: any) => {
 
   if (item.isFound) {
     steps.push({ label: "Actively Searching", status: "completed" as const, icon: <FaSearch size={12} /> });
-    steps.push({ label: "Secured by SAS Office", date: item.updatedAt, status: "completed" as const, icon: <FaCheckCircle size={12} /> });
+    steps.push({ label: "Secured by SpotFound", date: item.updatedAt, status: "completed" as const, icon: <FaCheckCircle size={12} /> });
   } else {
     steps.push({ label: "Actively Searching", status: "active" as const, icon: <FaSearch size={12} /> });
     steps.push({ label: "Awaiting Recovery", status: "pending" as const, icon: <FaBoxOpen size={12} /> });
@@ -170,16 +168,16 @@ const ItemStatus = () => {
   const isLoggedIn = !!user;
 
   const { data: myLostItems, isLoading: lostLoading } = useGetMyLostItemQuery({}, { skip: !isLoggedIn });
-  const { data: myClaims,    isLoading: claimsLoading } = useMyClaimsQuery({}, { skip: !isLoggedIn });
+  const { data: myClaims, isLoading: claimsLoading } = useMyClaimsQuery({}, { skip: !isLoggedIn });
   const [triggerSearch, { data: searchResult, isFetching: searchLoading }] = useLazyGetSingleLostItemQuery();
   const [trackClaim, { isLoading: trackClaimLoading }] = useTrackClaimMutation();
 
   const [trackingType, setTrackingType] = useState<"lost" | "claim">("lost");
   const [activeTab, setActiveTab] = useState(0);
-  
+
   const [searchId, setSearchId] = useState("");
   const [email, setEmail] = useState("");
-  
+
   const [isSearched, setIsSearched] = useState(false);
   const [claimResult, setClaimResult] = useState<any>(null);
 
@@ -244,7 +242,7 @@ const ItemStatus = () => {
 
   const tabs = [
     { id: 0, label: "My Lost Reports", icon: <FaSearch size={11} />, count: myLostItems?.data?.length || 0 },
-    { id: 1, label: "My Claims",       icon: <FaHistory size={11} />, count: myClaims?.data?.length || 0 },
+    { id: 1, label: "My Claims", icon: <FaHistory size={11} />, count: myClaims?.data?.length || 0 },
   ];
 
   return (
@@ -252,7 +250,7 @@ const ItemStatus = () => {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 py-8 sm:py-16">
 
-         {/* ── Hero ── */}
+        {/* ── Hero ── */}
         <div className="text-center mb-8">
           <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">
             My Reports &amp; Claims
@@ -264,23 +262,21 @@ const ItemStatus = () => {
 
         {/* ── Search Bar Area ── */}
         <div className="reveal reveal-delay-1 max-w-3xl mx-auto mb-12">
-          
+
           {/* Toggle Type */}
           <div className="flex items-center justify-center gap-2 mb-6">
             <div className="flex items-center gap-2 bg-gray-900 border border-white/5 rounded-xl p-1">
               <button
                 onClick={() => handleTypeChange("lost")}
-                className={`px-4 sm:px-6 py-2.5 rounded-lg text-xs font-bold transition-all duration-200 ${
-                  trackingType === "lost" ? "bg-blue-600 text-white shadow-lg shadow-blue-900/30" : "text-gray-400 hover:text-white"
-                }`}
+                className={`px-4 sm:px-6 py-2.5 rounded-lg text-xs font-bold transition-all duration-200 ${trackingType === "lost" ? "bg-blue-600 text-white shadow-lg shadow-blue-900/30" : "text-gray-400 hover:text-white"
+                  }`}
               >
                 Lost Item Reports
               </button>
               <button
                 onClick={() => handleTypeChange("claim")}
-                className={`px-4 sm:px-6 py-2.5 rounded-lg text-xs font-bold transition-all duration-200 ${
-                  trackingType === "claim" ? "bg-blue-600 text-white shadow-lg shadow-blue-900/30" : "text-gray-400 hover:text-white"
-                }`}
+                className={`px-4 sm:px-6 py-2.5 rounded-lg text-xs font-bold transition-all duration-200 ${trackingType === "claim" ? "bg-blue-600 text-white shadow-lg shadow-blue-900/30" : "text-gray-400 hover:text-white"
+                  }`}
               >
                 Claim Requests
               </button>
@@ -289,7 +285,7 @@ const ItemStatus = () => {
 
           <form onSubmit={handleSearch} className="relative w-full shadow-2xl shadow-black/40 rounded-xl">
             <div className="relative flex flex-col md:flex-row w-full bg-gray-900 border border-white/10 rounded-xl focus-within:ring-2 focus-within:ring-blue-500/30 focus-within:border-blue-500/50 transition-all duration-300">
-              
+
               {/* Tracking ID Field */}
               <div className="relative flex items-center w-full md:flex-1">
                 <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-500" size={14} />
@@ -312,18 +308,17 @@ const ItemStatus = () => {
                   </button>
                 </div>
               </div>
-              
+
               {/* Expanding Email Field & Mobile Claim Button */}
-              <div 
-                className={`flex flex-col md:flex-row items-center overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out ${
-                  trackingType === "claim" 
-                    ? "max-h-[200px] md:max-h-[100px] w-full md:flex-1 opacity-100" 
-                    : "max-h-0 md:max-h-[100px] w-full md:w-0 opacity-0 md:flex-none"
-                }`}
+              <div
+                className={`flex flex-col md:flex-row items-center overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out ${trackingType === "claim"
+                  ? "max-h-[200px] md:max-h-[100px] w-full md:flex-1 opacity-100"
+                  : "max-h-0 md:max-h-[100px] w-full md:w-0 opacity-0 md:flex-none"
+                  }`}
               >
                 <div className="hidden md:block w-px h-8 bg-white/10 shrink-0 self-center" />
                 <div className="w-full md:hidden h-px bg-white/5" />
-                
+
                 <div className="relative flex items-center w-full">
                   <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-500" size={14} />
                   <input
@@ -402,9 +397,9 @@ const ItemStatus = () => {
 
                 <div className="flex items-start gap-4 p-4 bg-black/20 rounded-xl border border-white/5">
                   {claimResult.foundItem?.img ? (
-                    <img 
-                      src={claimResult.foundItem.img} 
-                      alt="Item" 
+                    <img
+                      src={claimResult.foundItem.img}
+                      alt="Item"
                       className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-xl border border-white/5 shrink-0"
                     />
                   ) : (
@@ -431,19 +426,19 @@ const ItemStatus = () => {
                   <div>
                     <p className="text-emerald-400 font-bold text-sm">Claim Approved!</p>
                     <p className="text-emerald-400/70 text-xs mt-1">
-                      Your claim has been verified. Please visit the SAS Office with a valid ID to pick up your item.
+                      Your claim has been verified. Please visit SpotFound with a valid ID to pick up your item.
                     </p>
                   </div>
                 </div>
               )}
-              
+
               {claimResult.status === "REJECTED" && (
                 <div className="p-5 bg-red-500/5 border-t border-red-500/10 flex items-start gap-3">
                   <div className="w-5 h-5 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center shrink-0 mt-0.5">✕</div>
                   <div>
                     <p className="text-red-400 font-bold text-sm">Claim Rejected</p>
                     <p className="text-red-400/70 text-xs mt-1">
-                      Unfortunately, this claim could not be verified. If you believe this is a mistake, please contact the SAS Office.
+                      Unfortunately, this claim could not be verified. If you believe this is a mistake, please contact SpotFound.
                     </p>
                   </div>
                 </div>
@@ -455,7 +450,7 @@ const ItemStatus = () => {
                   <div>
                     <p className="text-blue-400 font-bold text-sm">Under Review</p>
                     <p className="text-blue-400/70 text-xs mt-1">
-                      Your claim is currently being reviewed by the SAS Office. You will receive an update once it is verified.
+                      Your claim is currently being reviewed by SpotFound. You will receive an update once it is verified.
                     </p>
                   </div>
                 </div>
@@ -502,24 +497,22 @@ const ItemStatus = () => {
               <h2 className="text-white text-2xl font-bold mb-2">Your Dashboard</h2>
               <p className="text-gray-400 text-sm">A quick overview of all your submitted reports and claims</p>
             </div>
-            
+
             <div className="flex justify-center mb-8">
               <div className="flex items-center gap-2 bg-gray-900 border border-white/5 rounded-xl p-1 w-fit min-w-max overflow-x-auto no-scrollbar">
                 {tabs.map(tab => {
                   const isActive = activeTab === tab.id;
                   return (
                     <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-                      className={`flex items-center gap-2 px-6 py-2.5 rounded-lg text-xs font-bold transition-all duration-200 ${
-                        isActive
-                          ? "bg-white/10 text-white shadow-lg shadow-black/20"
-                          : "text-gray-400 hover:text-white hover:bg-white/5"
-                      }`}>
+                      className={`flex items-center gap-2 px-6 py-2.5 rounded-lg text-xs font-bold transition-all duration-200 ${isActive
+                        ? "bg-white/10 text-white shadow-lg shadow-black/20"
+                        : "text-gray-400 hover:text-white hover:bg-white/5"
+                        }`}>
                       {tab.icon}
                       <span>{tab.label}</span>
                       {tab.count > 0 && (
-                        <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-md ${
-                          isActive ? "bg-white/20 text-white" : "bg-white/5 text-gray-500"
-                        }`}>
+                        <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-md ${isActive ? "bg-white/20 text-white" : "bg-white/5 text-gray-500"
+                          }`}>
                           {tab.count}
                         </span>
                       )}
@@ -577,8 +570,8 @@ const ItemStatus = () => {
                         statusLabel={claim.status}
                         statusColor={
                           isApproved ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
-                          : isRejected ? "bg-red-500/10 text-red-400 border-red-500/20"
-                          : "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"
+                            : isRejected ? "bg-red-500/10 text-red-400 border-red-500/20"
+                              : "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"
                         }
                         steps={steps}
                         actionLink={`/foundItems/${claim.foundItemId}`}

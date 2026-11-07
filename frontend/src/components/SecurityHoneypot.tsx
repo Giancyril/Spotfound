@@ -16,7 +16,7 @@ const SecurityHoneypot = () => {
         "color:#facc15;font-size:14px;font-weight:600;line-height:1.6"
       );
       console.log(
-        "%cNBSC SAS Lost & Found — Unauthorized access attempts are logged.",
+        "%cSpotFound Lost & Found — Unauthorized access attempts are logged.",
         "color:#94a3b8;font-size:12px;"
       );
     }

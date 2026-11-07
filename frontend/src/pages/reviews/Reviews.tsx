@@ -13,13 +13,13 @@ interface Testimonial {
 const fallbackTestimonials: Testimonial[] = [
   {
     rating: 5,
-    feedback: "I lost my ID card near the canteen and reported it through the system. The next day, I got notified it was already at the SAS office. Super fast and easy!",
+    feedback: "I lost my ID card near the canteen and reported it through the system. The next day, I got notified it was already at SpotFound. Super fast and easy!",
     name: "Juan D.",
     position: "BSIT Student",
   },
   {
     rating: 5,
-    feedback: "Someone turned in my calculator and the system matched it with my report. I never thought I'd get it back before my exam. Thank you SAS!",
+    feedback: "Someone turned in my calculator and the system matched it with my report. I never thought I'd get it back before my exam. Thank you SpotFound!",
     name: "Maria S.",
     position: "BSEd Student",
   },
@@ -88,7 +88,7 @@ const Reviews = () => {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [isPaused, setIsPaused]       = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const total = testimonials.length;
@@ -196,11 +196,10 @@ const Reviews = () => {
             <div className="flex items-center gap-2">
               {testimonials.map((_, i) => (
                 <button key={i} onClick={() => goTo(i)}
-                  className={`transition-all duration-300 rounded-full ${
-                    i === activeIndex
-                      ? "w-6 h-2 bg-blue-400"
-                      : "w-2 h-2 bg-gray-600 hover:bg-gray-400"
-                  }`}
+                  className={`transition-all duration-300 rounded-full ${i === activeIndex
+                    ? "w-6 h-2 bg-blue-400"
+                    : "w-2 h-2 bg-gray-600 hover:bg-gray-400"
+                    }`}
                 />
               ))}
             </div>

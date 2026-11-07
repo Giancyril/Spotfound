@@ -183,8 +183,8 @@ const ReportPage = () => {
               {/* Top row: title | generated date */}
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <p className="r-text text-white font-bold text-base sm:text-lg leading-tight">NBSC SAS Lost & Found</p>
-                  <p className="r-muted text-gray-400 text-[10px] mt-0.5 uppercase tracking-widest">Student Affairs Services · Northern Bukidnon State College</p>
+                  <p className="r-text text-white font-bold text-base sm:text-lg leading-tight">SpotFound Lost & Found</p>
+                  <p className="r-muted text-gray-400 text-[10px] mt-0.5 uppercase tracking-widest">SpotFound · Lost &amp; Found Management System</p>
                 </div>
                 <div className="text-right shrink-0">
                   <p className="r-muted text-gray-500 text-[10px] uppercase tracking-widest">Generated</p>
@@ -449,10 +449,10 @@ const ReportPage = () => {
             {/* Footer */}
             <div className="r-card bg-gray-900 border border-white/5 rounded-2xl px-5 py-3 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <img src="https://nbsc.edu.ph/wp-content/uploads/2024/03/cropped-NBSC_NewLogo_icon.png"
-                  alt="NBSC" className="w-5 h-5 object-contain opacity-40"
+                <img src="/sas lost and found logo.png"
+                  alt="SpotFound" className="w-5 h-5 object-contain opacity-40"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
-                <p className="r-muted text-gray-600 text-[10px]">NBSC SAS Lost & Found System · Confidential Document</p>
+                <p className="r-muted text-gray-600 text-[10px]">SpotFound Lost & Found System · Confidential Document</p>
               </div>
               <p className="r-muted text-gray-600 text-[10px]">
                 Generated {now.toLocaleDateString("en-PH", { year: "numeric", month: "short", day: "numeric" })} · {now.toLocaleTimeString("en-PH", { hour: "2-digit", minute: "2-digit" })}

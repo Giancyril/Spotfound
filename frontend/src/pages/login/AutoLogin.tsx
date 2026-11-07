@@ -48,7 +48,7 @@ const AutoLogin = () => {
       <div className="flex flex-col items-center gap-4">
         <Spinner size="xl" />
         <p className="text-sm text-gray-400 animate-pulse tracking-widest uppercase">
-          Authenticating with SAS Portal...
+          Authenticating with SpotFound Portal...
         </p>
       </div>
     </div>
