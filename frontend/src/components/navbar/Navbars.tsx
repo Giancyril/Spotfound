@@ -334,8 +334,26 @@ export function Navbars() {
     users?.email?.charAt(0)?.toUpperCase() || "A";
 
   return (
-    <>
-      <Navbar fluid className="sticky top-0 z-50 bg-[#0a0f1d]/95 backdrop-blur-md border-b border-gray-800 shadow-2xl py-1 md:py-1.5 !overflow-visible">
+    <header className="sticky top-0 z-50">
+      {/* Top Banner on Mobile */}
+      <div className="bg-[#060a15] border-b border-white/5 py-1 px-3 flex items-center justify-center sm:hidden">
+        <a
+          href="https://dealmyapp.com/listings/spotfound"
+          target="_blank"
+          className="flex items-center hover:opacity-90 transition-opacity"
+          title="Listed on DealMyApp"
+        >
+          <img
+            src="https://dealmyapp.com/badges/listed-on-dealmyapp-light.svg"
+            alt="Listed on DealMyApp"
+            width="200"
+            height="40"
+            className="h-6 w-auto object-contain"
+          />
+        </a>
+      </div>
+
+      <Navbar fluid className="bg-[#0a0f1d]/95 backdrop-blur-md border-b border-gray-800 shadow-2xl py-1 md:py-1.5 !overflow-visible">
 
         {/* Brand */}
         <NavbarBrand
@@ -357,7 +375,23 @@ export function Navbars() {
         </NavbarBrand>
 
         {/* Right side */}
-        <div className="flex md:order-2 items-center gap-2 !overflow-visible">
+        <div className="flex md:order-2 items-center gap-2 sm:gap-2.5 !overflow-visible">
+          {/* DealMyApp Badge (Desktop & Tablet) */}
+          <a
+            href="https://dealmyapp.com/listings/spotfound"
+            target="_blank"
+            className="hidden sm:flex items-center shrink-0 hover:opacity-90 transition-opacity mr-0.5"
+            title="Listed on DealMyApp"
+          >
+            <img
+              src="https://dealmyapp.com/badges/listed-on-dealmyapp-light.svg"
+              alt="Listed on DealMyApp"
+              width="200"
+              height="40"
+              className="h-7 md:h-8 w-auto object-contain"
+            />
+          </a>
+
           <ChatbotConcierge />
           <NotificationBell />
 
@@ -543,6 +577,25 @@ export function Navbars() {
         <div className={`mobile-nav-menu md:hidden ${mobileMenuOpen ? "open" : "closed"}`}>
           <div className="px-2 pt-1 pb-3">
 
+            {/* DealMyApp Badge in Mobile Menu */}
+            <div className="px-3 py-2.5 flex items-center justify-center border-b border-white/5 mb-3 bg-white/[0.02] rounded-xl">
+              <a
+                href="https://dealmyapp.com/listings/spotfound"
+                target="_blank"
+                onClick={closeMobileMenu}
+                className="flex items-center hover:opacity-90 transition-opacity"
+                title="Listed on DealMyApp"
+              >
+                <img
+                  src="https://dealmyapp.com/badges/listed-on-dealmyapp-light.svg"
+                  alt="Listed on DealMyApp"
+                  width="200"
+                  height="40"
+                  className="h-7 w-auto object-contain"
+                />
+              </a>
+            </div>
+
             {isLoggedIn && (
               <div className="flex items-center gap-3 px-3 py-3 mb-2 rounded-xl bg-blue-500/5 border border-blue-500/10">
                 <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center shrink-0 border-2 border-blue-500/30">
@@ -676,6 +729,6 @@ export function Navbars() {
           </div>
         </NavbarCollapse>
       </Navbar>
-    </>
+    </header>
   );
 }

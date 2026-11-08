@@ -1,4 +1,6 @@
-# Lost & Found System
+# SpotFound — Lost & Found System
+
+<a href="https://dealmyapp.com/listings/spotfound"><img src="https://dealmyapp.com/badges/listed-on-dealmyapp-light.svg" alt="Listed on DealMyApp" width="200" height="40"></a>
 
 A production-grade, AI-augmented Lost & Found platform designed for academic institutions. Features intelligent item-to-report matching via Google Gemini, Magic AI Scan for instant item identification from photos, OCR-powered ID card extraction with bounding-box overlays, real-time anonymized community chat, Web Push notifications, an RPG-style gamification engine (XP, streaks, leaderboards, bounties), predictive hotspot analytics, indoor 3D campus maps, Redis-cached student masterlist lookups, optimistic UI updates, automated data retention & compliance reporting, and a full admin communication, moderation, and security suite.
 
